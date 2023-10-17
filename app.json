@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "UrBuy",
+    "slug": "UrBuy",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
