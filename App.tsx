@@ -1,13 +1,9 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Text, View } from 'react-native';
+import StackComponent from './src/routes/stack';
 
-export default function App() {
-  return (
-    <View >
-      <Text>Hello World</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+function App(): JSX.Element {
+  return <StackComponent />;
 }
+
+export default App;
 
