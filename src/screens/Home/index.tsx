@@ -1,13 +1,19 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-import {Button} from '../../components/Button';
+import {Button} from 'src/components/Button';
 
 import LogoIcon from 'src/assets/svg/logo.svg';
 import LogoText from 'src/assets/svg/logoText.svg';
+import { ModalLogin } from 'src/components/Modais/ModalLogin';
+
+import { useHome } from './hooks';
 
 const Home: React.FC = () => {
+  const {refs, actions} = useHome();
+
   return (
+   <>
     <View className="bg-blue-100 flex flex-col items-center justify-center w-full h-full">
       <View className="w-full flex items-center justify-center flex-row gap-4 mb-40">
         <LogoIcon />
@@ -15,7 +21,8 @@ const Home: React.FC = () => {
       </View>
 
       <View className="flex flex-col gap-4">
-        <Button className="bg-green-100 w-72 h-16 rounded-lg flex items-center justify-center text-center">
+        <Button className="bg-green-100 w-72 h-16 rounded-lg flex items-center justify-center text-center"  
+        onPress={actions.handleOpenModalLogin}>
           <Text className="text-white text-lg">Login</Text>
         </Button>
 
@@ -24,6 +31,9 @@ const Home: React.FC = () => {
         </Button>
       </View>
     </View>
+
+    <ModalLogin modalRef={refs.modalLoginRef} />
+   </>
   );
 };
 
