@@ -8,7 +8,7 @@ export const useModalLogin = () => {
     
     const toast = useToast();
 
-    const validationEmptyValues = () => {
+    const validationEmptyValues = (): boolean => {
         let errorMessage = "Preencha todos os campos para continuar";
     
         if (!email && password) {
@@ -31,7 +31,7 @@ export const useModalLogin = () => {
     }
     
     //TODO: ALTERAR ESTA FUNÇÃO PARA REDIRECIONAR PARA A DASHBOARD
-    const navigateToDashboard = () => {
+    const navigateToDashboard = (): void => {
         toast.show({
             title: "Login realizado com sucesso",
             duration: 3000,
@@ -40,30 +40,15 @@ export const useModalLogin = () => {
         })
     }
 
-    const isEmailValid = (email: string) => {
+    const isEmailValid = (email: string): boolean => {
         const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
         return emailRegex.test(email);
       };
-
-      const isPasswordValid = (password: string) => {
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return passwordRegex.test(password);
-      };
       
-    const validateValue = () => {
+    const validateValue = (): boolean => {
         if (!isEmailValid(email)) {
             toast.show({
-                title: "Email inválido",
-                duration: 3000,
-                bgColor: "red.500",
-                placement: "top",
-            });
-            return false;
-        }
-
-        if (!isPasswordValid(password)) {
-            toast.show({
-                title: "Senha inválida",
+                title: "Email ou Senha inválidos",
                 duration: 3000,
                 bgColor: "red.500",
                 placement: "top",
@@ -75,16 +60,16 @@ export const useModalLogin = () => {
     }
       
 
-    const resetValues = () => {
+    const resetValues = (): void => {
         setEmail('');
         setPassword('');
     }
 
-    const showPassword = () => {
+    const showPassword = (): void => {
         setSecureTextEntry(!secureTextEntry);
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = (): void => {
         if(!validationEmptyValues()) return;
         if(!validateValue()) return;
 
