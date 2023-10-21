@@ -1,16 +1,37 @@
 import React from "react";
+import { FormControl, Input as NativeBaseInput } from 'native-base';
 
 import * as T from "./types";
-import { TextInput } from "react-native";
 
-export const Input: React.FC<T.InputProps> = ({ placeholder, value, onChangeText, secureTextEntry }) => {
+
+export const Input: React.FC<T.InputProps> = ({ placeholder, value, onChangeText, secureTextEntry, isInvalid, errorMessage }) => {
+    const invalid = !!errorMessage || isInvalid
+
     return (
-        <TextInput
-        placeholder={placeholder}
-        className="w-80 h-16 flex justify-start p-4 bg-gray-100 rounded-xl border border-solid border-blue-100 mt-4"
-        value={value}
-        onChangeText={onChangeText}
-        secureTextEntry={secureTextEntry}
-        />
+        <FormControl mb={4} isInvalid={invalid}>
+            <NativeBaseInput
+                placeholder={placeholder}
+                value={value}
+                onChangeText={onChangeText}
+                secureTextEntry={secureTextEntry}
+                bg='gray.100'
+                h={12}
+                w={80}
+                _focus={{
+                    bg: 'gray.200',
+                    borderWidth: 2,
+                    borderColor: '#749E50',
+                }}
+                _invalid={{
+                    borderWidth: 2,
+                    borderColor: 'red.500',
+                }}
+                borderWidth={1}
+                borderColor={'#173042FC'}
+                borderRadius={10}
+                isInvalid={invalid}
+            />
+        </FormControl>
     );
+
 }

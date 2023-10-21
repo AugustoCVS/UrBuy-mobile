@@ -3,4 +3,6 @@ export type InputProps = {
     value?: string, 
     onChangeText?: (text: string) => void,
     secureTextEntry?: boolean,
+    isInvalid?: boolean
+    errorMessage?: string
 }
