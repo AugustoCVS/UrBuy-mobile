@@ -31,6 +31,8 @@ export const Input: React.FC<T.InputProps> = ({ placeholder, value, onChangeText
                 borderRadius={10}
                 isInvalid={invalid}
             />
+
+            <FormControl.ErrorMessage>{errorMessage}</FormControl.ErrorMessage>
         </FormControl>
     );
 
