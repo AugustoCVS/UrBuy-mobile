@@ -1,6 +1,7 @@
 export type CheckboxProps = {
     label: string,
-    checked?: boolean,
+    checked: boolean,
     onChange?: (checked: boolean) => void
-    onPress?: () => void
+    onPress?: void
+    errorMessage?: string
 }
