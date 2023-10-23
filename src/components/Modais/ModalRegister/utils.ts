@@ -52,7 +52,7 @@ export const signUpSchema = yup.object().shape({
   .test(
     "selectedOption",
     "Selecione pelo menos uma opção",
-    (value) => value === "Comprador" || value === "Fornecedor"
+    (value) => value === "isBuyer" || value === "isSupplier"
   )
   .required("Selecione pelo menos uma opção"),
 });

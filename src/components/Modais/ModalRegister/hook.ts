@@ -7,6 +7,8 @@ import * as U from "./utils";
 export const useModalRegister = () => {
   const toast = useToast();
 
+  const [selectedOption, setSelectedOption] = useState<string>("Comprador");
+
   const showErrorToast = (title: string): void => {
     toast.show({
       title: title,
@@ -79,6 +81,7 @@ export const useModalRegister = () => {
     states: {
       formFields,
       items,
+      selectedOption
     },
     actions: {
       handleSignUp,
