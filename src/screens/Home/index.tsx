@@ -8,6 +8,7 @@ import LogoText from 'src/assets/svg/logoText.svg';
 import { ModalLogin } from 'src/components/Modais/ModalLogin';
 
 import { useHome } from './hooks';
+import { ModalRegister } from 'src/components/Modais/ModalRegister';
 
 const Home: React.FC = () => {
   const {refs, actions} = useHome();
@@ -26,13 +27,16 @@ const Home: React.FC = () => {
           <Text className="text-white text-lg">Login</Text>
         </Button>
 
-        <Button className="bg-white w-72 h-16 rounded-lg flex items-center justify-center text-center">
+        <Button className="bg-white w-72 h-16 rounded-lg flex items-center justify-center text-center" 
+        onPress={actions.handleOpenModalRegister}
+        >
           <Text className="text-green-100 text-lg">Cadastro</Text>
         </Button>
       </View>
     </View>
 
     <ModalLogin modalRef={refs.modalLoginRef} />
+    <ModalRegister modalRef={refs.modalRegisterRef} />
    </>
   );
 };
