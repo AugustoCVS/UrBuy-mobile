@@ -5,12 +5,22 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import Home from '../screens/Home';
+import { Dashboard } from 'src/screens/Dashboard';
+import { ProductScreen } from 'src/screens/Dashboard/components/Products/components/ProductCard';
 
 const Stack = createNativeStackNavigator();
 
-type StackNavigation = {
+export type StackNavigation = {
   Home: undefined;
-  Login: undefined;
+  Dashboard: undefined;
+  Produtos: {
+    item: {
+      name: string;
+      description: string;
+      price: number;
+      quantity: number;
+    }
+  }
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -27,6 +37,21 @@ export default function StackComponent() {
             headerShown: false,
           }}
           component={Home}
+        />
+
+        <Stack.Screen
+          name="Dashboard"
+          options={{
+            title: '',
+            headerTransparent: true,
+            headerShown: false,
+          }}
+          component={Dashboard}
+        />
+
+        <Stack.Screen
+          name="Produtos"
+          component={ProductScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
