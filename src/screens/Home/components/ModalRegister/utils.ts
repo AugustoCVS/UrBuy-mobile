@@ -46,13 +46,4 @@ export const signUpSchema = yup.object().shape({
   street: yup.string().required("A rua é obrigatória"),
 
   complement: yup.string(),
-
-  selectedOption: yup
-  .string()
-  .test(
-    "selectedOption",
-    "Selecione pelo menos uma opção",
-    (value) => value === "isBuyer" || value === "isSupplier"
-  )
-  .required("Selecione pelo menos uma opção"),
 });

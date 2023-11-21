@@ -7,8 +7,6 @@ import * as U from "./utils";
 export const useModalRegister = () => {
   const toast = useToast();
 
-  const [selectedOption, setSelectedOption] = useState<string>("Comprador");
-
   const showErrorToast = (title: string): void => {
     toast.show({
       title: title,
@@ -29,17 +27,6 @@ export const useModalRegister = () => {
       showErrorToast("Erro ao cadastrar usuário!");
     }
   };
-
-  const items = [
-    {
-      label: "Fornecedor",
-      value: "Fornecedor",
-    },
-    {
-      label: "Comprador",
-      value: "Comprador"
-    }
-  ]
 
   const formFields = [
     {
@@ -80,8 +67,6 @@ export const useModalRegister = () => {
   return {
     states: {
       formFields,
-      items,
-      selectedOption
     },
     actions: {
       handleSignUp,

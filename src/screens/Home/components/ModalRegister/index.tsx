@@ -25,7 +25,6 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
       companyName: "",
       email: "",
       password: "",
-      selectedOption: "",
       cep: "",
       confirmPassword: "",
       complement: "",
@@ -78,33 +77,6 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
             )}
           />
         ))}
-
-        <View>
-          <Controller
-            control={control}
-            name="selectedOption"
-            render={({ field: { onChange } }) => (
-              <Checkbox
-                label="Comprador"
-                checked={states.selectedOption === "isBuyer"}
-                onChange={() => onChange("isBuyer")}
-              />
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="selectedOption"
-            render={({ field: { onChange } }) => (
-              <Checkbox
-                label="Fornecedor"
-                checked={states.selectedOption === "isSupplier"}
-                onChange={() => onChange("isSupplier")}
-                errorMessage={errors.selectedOption?.message}
-              />
-            )}
-          />
-        </View>
       </ScrollView>
       <Button
         className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-16 w-80"
