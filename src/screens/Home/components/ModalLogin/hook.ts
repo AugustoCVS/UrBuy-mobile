@@ -44,7 +44,6 @@ export const useModalLogin = () => {
       await U.signInSchema.validate(FormData, { abortEarly: false });
       await signInWithEmailAndPassword(auth, FormData.email, FormData.password);
       navigateToDashboard();
-      console.log(FormData);
     } catch (error) {
      showToast({title: "E-mail ou senha inválidos", error: true});
     } finally {
