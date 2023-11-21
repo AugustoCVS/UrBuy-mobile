@@ -10,6 +10,7 @@ import { Pressable, View, Text } from "react-native";
 import { Button } from "src/components/Button";
 import { useModalLogin } from "./hook";
 import { Input } from "src/components/Input";
+import { Spinner } from "native-base";
 
 export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
   const { states, actions } = useModalLogin();
@@ -18,11 +19,7 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<T.useLoginProps>({
-    resolver: yupResolver(U.signInSchema),
-    defaultValues: {
-      email: "",
-      password: "",
-    }
+    resolver: yupResolver(U.signInSchema)
   });
 
   const onClose = () => {
@@ -86,9 +83,11 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
         className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-12 w-80"
         onPress={handleSubmit(actions.handleSignUp)}
       >
-        <Text className="text-white font-bold text-xl">Continuar</Text>
+        <Text className="text-white font-bold text-xl">
+          {states.loading ? <Spinner color="white" size='sm' /> : "Continuar"}
+        </Text>
       </Button>
-      <Pressable className="mt-4">
+      <Pressable className="mt-4" onPress={actions.forgetPassword}>
         <Text className="text-gray-600">Esqueci a Senha</Text>
       </Pressable>
     </Modal>
