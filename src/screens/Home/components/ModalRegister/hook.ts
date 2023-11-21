@@ -3,70 +3,41 @@ import { useToast } from "native-base";
 
 import * as T from "./types";
 import * as U from "./utils";
+import { FIREBASE_AUTH } from "auth/FirebaseConfig";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-export const useModalRegister = () => {
+export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
+  const auth = FIREBASE_AUTH;
   const toast = useToast();
+  const [loading, setLoading] = useState(false);
 
-  const showErrorToast = (title: string): void => {
+  const showToast = ({title, error}: {title: string, error: boolean }): void => {
     toast.show({
       title: title,
       duration: 3000,
-      bgColor: "red.500",
+      bgColor: error ? "red.500" : "green.500",
       placement: "top",
     });
   };
 
   const handleSignUp = async (FormData: T.useRegisterProps): Promise<void> => {
     try {
+      setLoading(true);
       await U.signUpSchema.validate(FormData, { abortEarly: false });
-      // await api.post('/users', FormData);
-      // modalRef.current?.close();
-      // navigation.navigate('Login');
-      console.log(FormData);
+      await createUserWithEmailAndPassword(auth, FormData.email, FormData.password);
+      showToast({title: "Usuário cadastrado com sucesso!", error: false})
+      modalRef.current?.close();
     } catch (error) {
-      showErrorToast("Erro ao cadastrar usuário!");
+      showToast({title: "Erro ao cadastrar o usuário", error: true});
+    } finally {
+      setLoading(false);
     }
   };
-
-  const formFields = [
-    {
-      name: "companyName",
-      placeholder: "Nome da Empresa",
-    },
-    {
-      name: "cnpj",
-      placeholder: "CNPJ",
-    },
-    {
-      name: "email",
-      placeholder: "E-mail",
-    },
-    {
-      name: "password",
-      placeholder: "Senha",
-    },
-    {
-      name: "confirmPassword",
-      placeholder: "Confirmar Senha",
-    },
-    {
-      name: "cep",
-      placeholder: "CEP",
-    },
-    {
-      name: "street",
-      placeholder: "Rua",
-    },
-    {
-      name: "complement",
-      placeholder: "Complemento",
-    },
-  ];
 
 
   return {
     states: {
-      formFields,
+      loading,
     },
     actions: {
       handleSignUp,

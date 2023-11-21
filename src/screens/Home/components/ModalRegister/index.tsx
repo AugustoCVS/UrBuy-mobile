@@ -11,26 +11,16 @@ import { useModalRegister } from "./hook";
 
 import * as T from "./types";
 import * as U from "./utils";
-import { Checkbox } from "src/components/Checkbox";
+import { Spinner } from "native-base";
 
 export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
-  const { states, actions } = useModalRegister();
+  const { states, actions } = useModalRegister({modalRef});
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<T.useRegisterProps>({
-    resolver: yupResolver(U.signUpSchema),
-    defaultValues: {
-      companyName: "",
-      email: "",
-      password: "",
-      cep: "",
-      confirmPassword: "",
-      complement: "",
-      cnpj: "",
-      street: "",
-    }
+    resolver: yupResolver(U.signUpSchema)
   });
 
   const onClose = (): void => {
@@ -55,7 +45,7 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
         style={{ maxHeight: 400 }}
         showsVerticalScrollIndicator={false}
       >
-        {states.formFields.map((item) => (
+        {U.formFields.map((item) => (
           <Controller
             key={item.name}
             control={control}
@@ -68,7 +58,7 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
                   errorMessage={errors[item.name]?.message}
                 />
                 {item.name === "password" && (
-                  <Text className="text-gray-600 text-xs px-4 mb-2">
+                  <Text className="text-gray-600 text-xs px-4 mb-4 text-center">
                     A senha deve conter letras maiúsculas e minúsculas, números
                     e um caractere especial.
                   </Text>
@@ -79,10 +69,12 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
         ))}
       </ScrollView>
       <Button
-        className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-16 w-80"
+        className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-12 mb-6 w-80"
         onPress={handleSubmit(actions.handleSignUp)}
       >
-        <Text className="text-white font-bold text-xl">Cadastrar</Text>
+        <Text className="text-white font-bold text-xl">
+          {states.loading ? <Spinner color="white" size='sm' /> : "Cadastrar"}
+        </Text>
       </Button>
     </Modal>
   );
