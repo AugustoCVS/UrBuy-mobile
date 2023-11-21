@@ -1,19 +1,6 @@
 import * as yup from "yup";
 
 export const signUpSchema = yup.object().shape({
-  companyName: yup.string().required("O nome da empresa é obrigatório"),
-
-  cnpj: yup
-    .string()
-    .required("O CNPJ é obrigatório")
-    .test("cnpj", "CNPJ inválido", function (value) {
-      const cnpjRegex = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}|\d{14}$/;
-
-      const cleanedCnpj = value.replace(/[./-]/g, "");
-
-      return cnpjRegex.test(cleanedCnpj);
-    }),
-
   email: yup
     .string()
     .email("Digite um e-mail válido")
@@ -32,18 +19,19 @@ export const signUpSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref("password"), null], "As senhas devem ser iguais")
     .required("A confirmação de senha é obrigatória"),
-
-  cep: yup
-    .string()
-    .required("O CEP é obrigatório")
-    .test("cep", "CEP inválido", function (value) {
-      const cleanedCep = value.replace(/[^\d]/g, "");
-      const cepRegex = /^\d{8}$/;
-
-      return cepRegex.test(cleanedCep);
-    }),
-
-  street: yup.string().required("A rua é obrigatória"),
-
-  complement: yup.string(),
 });
+
+export const formFields = [
+  {
+    name: "email",
+    placeholder: "E-mail",
+  },
+  {
+    name: "password",
+    placeholder: "Senha",
+  },
+  {
+    name: "confirmPassword",
+    placeholder: "Confirmar Senha",
+  },
+];
