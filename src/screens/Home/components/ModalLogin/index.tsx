@@ -18,7 +18,7 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<T.useLoginProps>({
-    // resolver: yupResolver(U.signInSchema),
+    resolver: yupResolver(U.signInSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -58,7 +58,7 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
         <View>
         <Controller
           control={control}
-          name="email"
+          name="password"
           render={({ field: { onChange } }) => (
             <Input
               placeholder="Senha"
