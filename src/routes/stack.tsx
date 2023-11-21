@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createNativeStackNavigator,
@@ -7,6 +7,8 @@ import {
 import Home from '../screens/Home';
 import { Dashboard } from 'src/screens/Dashboard';
 import { ProductScreen } from 'src/screens/Dashboard/components/Products/components/ProductCard';
+import { User, onAuthStateChanged } from 'firebase/auth';
+import { FIREBASE_AUTH } from 'auth/FirebaseConfig';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,33 +28,49 @@ export type StackNavigation = {
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
 
 export default function StackComponent() {
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      setUser(user)
+    })
+  }, [])
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
+        {user ? (
+          <>
+          <Stack.Screen 
+            name="Dashboard" 
+            options={{
+            title: '',
+            headerTransparent: true,
+            headerShown: false,
+          }} 
+          component={Dashboard} 
+          />
+
+          <Stack.Screen 
+            name="Produtos" 
+            options={{
+            title: 'Produto',
+          }} 
+          component={ProductScreen} 
+          />
+
+          </>
+        ) : (
+          <Stack.Screen 
+          name="Home"  
           options={{
             title: '',
             headerTransparent: true,
             headerShown: false,
-          }}
-          component={Home}
-        />
-
-        <Stack.Screen
-          name="Dashboard"
-          options={{
-            title: '',
-            headerTransparent: true,
-            headerShown: false,
-          }}
-          component={Dashboard}
-        />
-
-        <Stack.Screen
-          name="Produtos"
-          component={ProductScreen}
-        />
+          }} 
+          component={Home} />
+        
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
