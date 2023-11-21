@@ -5,10 +5,10 @@ import {Button} from 'src/components/Button';
 
 import LogoIcon from 'src/assets/svg/logo.svg';
 import LogoText from 'src/assets/svg/logoText.svg';
-import { ModalLogin } from 'src/components/Modais/ModalLogin';
+import { ModalLogin } from 'src/screens/Home/components/ModalLogin';
 
 import { useHome } from './hooks';
-import { ModalRegister } from 'src/components/Modais/ModalRegister';
+import { ModalRegister } from 'src/screens/Home/components/ModalRegister';
 
 const Home: React.FC = () => {
   const {refs, actions} = useHome();
