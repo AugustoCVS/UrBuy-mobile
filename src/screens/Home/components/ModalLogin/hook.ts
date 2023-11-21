@@ -1,35 +1,31 @@
 import { useState } from "react";
 import { useToast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
-import * as yup from "yup";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 import * as T from "./types";
 import * as U from "./utils";
 import { StackTypes } from "src/routes/stack";
+import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 
 export const useModalLogin = () => {
   const navigation = useNavigation<StackTypes>();
+  const auth = FIREBASE_AUTH;
   const [secureTextEntry, setSecureTextEntry] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const toast = useToast();
 
-  //TODO: ALTERAR ESTA FUNÇÃO PARA REDIRECIONAR PARA A DASHBOARD
   const navigateToDashboard = (): void => {
-    toast.show({
-      title: "Login realizado com sucesso",
-      duration: 3000,
-      bgColor: "green.500",
-      placement: "top",
-    });
-
+    showToast({title: "Login efetuado com sucesso!", error: false});
     navigation.navigate("Dashboard");
   };
 
-  const showErrorToast = (title: string): void => {
+  const showToast = ({title, error}: {title: string, error: boolean }): void => {
     toast.show({
       title: title,
       duration: 3000,
-      bgColor: "red.500",
+      bgColor: error ? "red.500" : "green.500",
       placement: "top",
     });
   };
@@ -38,26 +34,33 @@ export const useModalLogin = () => {
     setSecureTextEntry(!secureTextEntry);
   };
 
+  const forgetPassword = (): void => {
+    showToast({title: "Funcionalidade em desenvolvimento!", error: true})
+  }
+
   const handleSignUp = async (FormData: T.useLoginProps): Promise<void> => {
     try {
-    //   await U.signInSchema.validate(FormData, { abortEarly: false });
-      // await api.post('/users', FormData);
-      // modalRef.current?.close();
-      // navigation.navigate('Login');
+      setLoading(true);
+      await U.signInSchema.validate(FormData, { abortEarly: false });
+      await signInWithEmailAndPassword(auth, FormData.email, FormData.password);
       navigateToDashboard();
       console.log(FormData);
     } catch (error) {
-      showErrorToast("E-mail ou senha inválidos!");
+     showToast({title: "E-mail ou senha inválidos", error: true});
+    } finally {
+      setLoading(false);
     }
   };
 
   return {
     states: {
       secureTextEntry,
+      loading,
     },
     actions: {
       handleSignUp,
       showPassword,
+      forgetPassword,
     },
   };
 };
