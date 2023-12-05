@@ -4,7 +4,7 @@ import { View, FlatList, StyleSheet } from "react-native";
 import { DashBoardHeader } from "./components/Header";
 import { Products } from "./components/Products";
 import productList from "./utils";
-import { StackTypes } from "src/routes/stack";
+import { StackTypes } from "src/routes/stack.routes";
 import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 });
 
 export const Dashboard: React.FC = () => {
-    const navigation = useNavigation<StackTypes>();
+  const navigation = useNavigation<StackTypes>();
 
   return (
     <>
@@ -26,13 +26,14 @@ export const Dashboard: React.FC = () => {
         <FlatList
           data={productList}
           keyExtractor={(product) => product.name}
+          showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <Products
               description={item.description}
               name={item.name}
               price={item.price}
               quantity={item.quantity}
-            onPress={() => navigation.navigate("Produtos", { item })}
+              onPress={() => navigation.navigate("Produtos", { item })}
             />
           )}
           contentContainerStyle={{ alignItems: "center" }}
