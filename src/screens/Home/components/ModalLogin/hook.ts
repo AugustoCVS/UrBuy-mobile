@@ -5,7 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 
 import * as T from "./types";
 import * as U from "./utils";
-import { StackTypes } from "src/routes/stack";
+import { StackTypes } from "src/routes/stack.routes";
 import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 
 export const useModalLogin = () => {
@@ -18,7 +18,7 @@ export const useModalLogin = () => {
 
   const navigateToDashboard = (): void => {
     showToast({title: "Login efetuado com sucesso!", error: false});
-    navigation.navigate("Dashboard");
+    navigation.navigate("TabDashboard");
   };
 
   const showToast = ({title, error}: {title: string, error: boolean }): void => {
