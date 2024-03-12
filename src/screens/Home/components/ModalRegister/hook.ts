@@ -3,13 +3,12 @@ import { useToast } from "native-base";
 
 import * as T from "./types";
 import * as U from "./utils";
-import { FIREBASE_AUTH } from "auth/FirebaseConfig";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthServices } from "src/services/auth";
+import { RegisterRequest } from "src/services/interfaces/auth";
 
 export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
-  const auth = FIREBASE_AUTH;
   const toast = useToast();
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const showToast = ({title, error}: {title: string, error: boolean }): void => {
     toast.show({
@@ -20,20 +19,23 @@ export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
     });
   };
 
-  const handleSignUp = async (FormData: T.useRegisterProps): Promise<void> => {
-    try {
-      setLoading(true);
-      await U.signUpSchema.validate(FormData, { abortEarly: false });
-      await createUserWithEmailAndPassword(auth, FormData.email, FormData.password);
+  const handleSignUp = async (FormData: RegisterRequest): Promise<void> => {
+    setLoading(true);
+  await U.signUpSchema.validate(FormData, { abortEarly: false });
+   AuthServices.register({data: FormData})
+   .then(() => {
       showToast({title: "Usuário cadastrado com sucesso!", error: false})
       modalRef.current?.close();
-    } catch (error) {
+   })
+   .catch(() => {
       showToast({title: "Erro ao cadastrar o usuário", error: true});
-    } finally {
-      setLoading(false);
-    }
+   })
+   .finally(() => setLoading(false));
   };
 
+  const handleCloseModal = (): void => {
+    modalRef.current.close();
+  };
 
   return {
     states: {
@@ -41,6 +43,7 @@ export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
     },
     actions: {
       handleSignUp,
+      handleCloseModal,
     },
   };
 };

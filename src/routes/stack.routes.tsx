@@ -16,14 +16,7 @@ const Stack = createNativeStackNavigator();
 export type StackNavigation = {
   Home: undefined;
   TabDashboard: undefined;
-  Produtos: {
-    item: {
-      name: string;
-      description: string;
-      price: number;
-      quantity: number;
-    };
-  };
+  Produtos: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;

@@ -8,4 +8,9 @@ export type ModalRegisterProps = {
     modalRef: RefObject<Modalize>;
 }
 
+export type FormFields = {
+    name: string;
+    placeholder: string;
+}
+
 export type useRegisterProps = yup.InferType<typeof U.signUpSchema>
