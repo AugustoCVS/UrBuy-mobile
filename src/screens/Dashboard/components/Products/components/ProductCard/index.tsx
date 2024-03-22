@@ -3,29 +3,11 @@ import { Text, View } from 'react-native';
 
 import { Feather} from '@expo/vector-icons';
 
-import * as T from './types';
-import { RouteProp } from '@react-navigation/native';
 import { Button } from 'src/components/Button';
+import { useProductCard } from './hook';
 
-type RootStackParamList = {
-  Produtos: { item: ProductCardProps };
-};
-
-type ProductCardProps = {
-  name: string;
-  price: number;
-  quantity: number;
-  description: string;
-};
-
-type ProductScreenRouteProp = RouteProp<RootStackParamList, 'Produtos'>;
-
-type ProductScreenProps = {
-  route: ProductScreenRouteProp;
-};
-
-export const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
-  const { item } = route.params;
+export const ProductScreen: React.FC = () => {
+  const {states} = useProductCard();
 
   return (
     <View className="flex-1 items-center bg-gray-100 p-4 justify-between">
@@ -33,10 +15,10 @@ export const ProductScreen: React.FC<ProductScreenProps> = ({ route }) => {
 
 
       <View className="bg-white p-8 rounded-lg shadow-md w-11/12">
-        <Text className="text-3xl font-bold mb-4">{item.name}</Text>
-        <Text className="text-lg mb-2">Descrição: {item.description}</Text>
-        <Text className="text-lg mb-2">Preço: R${item.price}</Text>
-        <Text className="text-lg mb-2">Quantidade Disponível: {item.quantity}</Text>
+        <Text className="text-3xl font-bold mb-4">{states.product.name}</Text>
+        <Text className="text-lg mb-2">Descrição: {states.product.description}</Text>
+        <Text className="text-lg mb-2">Preço: R${states.product.price}</Text>
+        <Text className="text-lg mb-2">Quantidade Disponível: {states.product.quantity}</Text>
 
         <View className="mt-6">
           <Text className="text-xl font-bold mb-2">Informações Adicionais:</Text>
