@@ -20,7 +20,7 @@ export default function TabRoutes() {
           fontSize: 14,
         },
         tabBarStyle: {
-          height: 88,
+          height: 60,
           backgroundColor: "#F9F8F8",
         },
       }}
