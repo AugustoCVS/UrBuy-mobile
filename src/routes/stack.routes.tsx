@@ -5,7 +5,6 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
-import { Dashboard } from "src/screens/Dashboard";
 import { ProductScreen } from "src/screens/Dashboard/components/Products/components/ProductCard";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "auth/FirebaseConfig";
@@ -16,7 +15,7 @@ const Stack = createNativeStackNavigator();
 export type StackNavigation = {
   Home: undefined;
   TabDashboard: undefined;
-  Produtos: undefined;
+  SingleProduct: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -46,7 +45,7 @@ export default function StackComponent() {
             />
 
             <Stack.Screen
-              name="Produtos"
+              name="SingleProduct"
               options={{
                 title: "Produto",
               }}
