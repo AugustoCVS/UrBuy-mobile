@@ -5,7 +5,7 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
-import { ProductScreen } from "src/screens/Dashboard/components/Products/components/ProductCard";
+import { ProductScreen } from "src/screens/SingleProduct";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 import TabRoutes from "./tab.routes";
