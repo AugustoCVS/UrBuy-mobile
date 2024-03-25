@@ -19,7 +19,7 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
     handleSubmit,
     formState: { errors },
   } = useForm<T.useLoginProps>({
-    resolver: yupResolver(U.signInSchema)
+    resolver: yupResolver(U.signInSchema),
   });
 
   const onClose = () => {
@@ -53,29 +53,29 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
         />
 
         <View>
-        <Controller
-          control={control}
-          name="password"
-          render={({ field: { onChange } }) => (
-            <Input
-              placeholder="Senha"
-              onChangeText={onChange}
-              errorMessage={errors.password?.message}
-              secureTextEntry={states.secureTextEntry}
-            />
-          )}
-        />
+          <Controller
+            control={control}
+            name="password"
+            render={({ field: { onChange } }) => (
+              <Input
+                placeholder="Senha"
+                onChangeText={onChange}
+                errorMessage={errors.password?.message}
+                secureTextEntry={states.secureTextEntry}
+              />
+            )}
+          />
 
-        <Pressable
-          className="absolute right-4 top-3"
-          onPress={actions.showPassword}
-        >
-          {states.secureTextEntry ? (
-            <Entypo name="eye-with-line" size={24} color="#B3B3B3" />
-          ) : (
-            <AntDesign name="eyeo" size={24} color="#B3B3B3" />
-          )}
-        </Pressable>
+          <Pressable
+            className="absolute right-4 top-3"
+            onPress={actions.showPassword}
+          >
+            {states.secureTextEntry ? (
+              <Entypo name="eye-with-line" size={24} color="#B3B3B3" />
+            ) : (
+              <AntDesign name="eyeo" size={24} color="#B3B3B3" />
+            )}
+          </Pressable>
         </View>
       </View>
 
@@ -84,7 +84,7 @@ export const ModalLogin: React.FC<T.ModalLoginProps> = ({ modalRef }) => {
         onPress={handleSubmit(actions.handleSignUp)}
       >
         <Text className="text-white font-bold text-xl">
-          {states.loading ? <Spinner color="white" size='sm' /> : "Continuar"}
+          {states.loading ? <Spinner color="white" size="sm" /> : "Continuar"}
         </Text>
       </Button>
       <Pressable className="mt-4" onPress={actions.forgetPassword}>
