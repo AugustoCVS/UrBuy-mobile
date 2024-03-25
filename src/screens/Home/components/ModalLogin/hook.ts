@@ -16,11 +16,6 @@ export const useModalLogin = () => {
 
   const toast = useToast();
 
-  const navigateToDashboard = (): void => {
-    showToast({title: "Login efetuado com sucesso!", error: false});
-    navigation.navigate("TabDashboard");
-  };
-
   const showToast = ({title, error}: {title: string, error: boolean }): void => {
     toast.show({
       title: title,
@@ -28,6 +23,11 @@ export const useModalLogin = () => {
       bgColor: error ? "red.500" : "green.500",
       placement: "top",
     });
+  };
+
+  const navigateToDashboard = (): void => {
+    showToast({title: "Login efetuado com sucesso!", error: false});
+    navigation.navigate("TabDashboard");
   };
 
   const showPassword = (): void => {

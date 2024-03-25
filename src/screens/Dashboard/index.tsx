@@ -6,6 +6,7 @@ import { Products } from "./components/Products";
 import productList from "./utils";
 import { StackTypes } from "src/routes/stack.routes";
 import { useNavigation } from "@react-navigation/native";
+import { useDashboard } from "./hook";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
 });
 
 export const Dashboard: React.FC = () => {
-  const navigation = useNavigation<StackTypes>();
+  const {actions} = useDashboard();
 
   return (
     <>
@@ -33,7 +34,7 @@ export const Dashboard: React.FC = () => {
               name={item.name}
               price={item.price}
               quantity={item.quantity}
-              onPress={() => navigation.navigate("Produtos", { item })}
+              onPress={() => actions.handleNavigateToProduct({product: item})}
             />
           )}
           contentContainerStyle={{ alignItems: "center" }}

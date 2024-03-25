@@ -14,18 +14,16 @@ import * as U from "./utils";
 import { Spinner } from "native-base";
 
 export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
-  const { states, actions } = useModalRegister({modalRef});
+  const { states, actions } = useModalRegister({ modalRef });
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<T.useRegisterProps>({
-    resolver: yupResolver(U.signUpSchema)
+    resolver: yupResolver(U.signUpSchema),
   });
 
-  const onClose = (): void => {
-    modalRef.current.close();
-  };
+ 
 
   return (
     <Modal
@@ -34,7 +32,7 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
         <View className="flex justify-center items-center mt-4">
           <Text className="text-blue-100 font-bold text-3xl">Cadastro</Text>
 
-          <Pressable onPress={onClose} className="absolute right-4 top-1">
+          <Pressable onPress={actions.handleCloseModal} className="absolute right-4 top-1">
             <AntDesign name="close" size={30} color="black" />
           </Pressable>
         </View>
@@ -42,7 +40,7 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
     >
       <ScrollView
         className="flex flex-col mt-4 w-80"
-        style={{ maxHeight: 400 }}
+        style={{ maxHeight: 500 }}
         showsVerticalScrollIndicator={false}
       >
         {U.formFields.map((item) => (
@@ -51,29 +49,25 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
             control={control}
             name={item.name as keyof T.useRegisterProps}
             render={({ field: { onChange } }) => (
-              <>
-                <Input
-                  placeholder={item.placeholder}
-                  onChangeText={onChange}
-                  errorMessage={errors[item.name]?.message}
-                />
-                {item.name === "password" && (
-                  <Text className="text-gray-600 text-xs px-4 mb-4 text-center">
-                    A senha deve conter letras maiúsculas e minúsculas, números
-                    e um caractere especial.
-                  </Text>
-                )}
-              </>
+              <Input
+                placeholder={item.placeholder}
+                onChangeText={onChange}
+                errorMessage={errors[item.name]?.message}
+              />
             )}
           />
         ))}
+        <Text className="text-gray-600 text-xs px-4 mb-4 text-center">
+          A senha deve conter letras maiúsculas e minúsculas, números e um
+          caractere especial.
+        </Text>
       </ScrollView>
       <Button
-        className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-12 mb-6 w-80"
+        className="bg-green-100 flex items-center justify-center py-4 rounded-xl mt-6 mb-6 w-80"
         onPress={handleSubmit(actions.handleSignUp)}
       >
         <Text className="text-white font-bold text-xl">
-          {states.loading ? <Spinner color="white" size='sm' /> : "Cadastrar"}
+          {states.loading ? <Spinner color="white" size="sm" /> : "Cadastrar"}
         </Text>
       </Button>
     </Modal>
