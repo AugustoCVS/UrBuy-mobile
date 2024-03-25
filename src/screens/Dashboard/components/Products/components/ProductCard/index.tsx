@@ -18,7 +18,7 @@ export const ProductScreen: React.FC = () => {
         <View className="bg-white p-8 rounded-lg shadow-md w-full mt-8">
           <Text className="text-3xl font-bold mb-4">{states.product.name}</Text>
           <Text className="text-lg mb-2">
-            Descrição: {states.product.description}
+            Tipo: {states.product.productType}
           </Text>
           <Text className="text-lg mb-2">Preço: R${states.product.price}</Text>
           <Text className="text-lg mb-2">
@@ -29,9 +29,19 @@ export const ProductScreen: React.FC = () => {
             <Text className="text-xl font-bold mb-2">
               Informações Adicionais:
             </Text>
-            <Text className="text-lg">Marca: XYZ</Text>
-            <Text className="text-lg">Categoria: Eletrônicos</Text>
-            <Text className="text-lg">Peso: 500g</Text>
+            {states.product.additionalInfo && (
+              <>
+                <Text className="text-lg flex-1">
+                  Marca: {states.product.additionalInfo?.brand || "-"}
+                </Text>
+                <Text className="text-lg flex-1">
+                  Categoria: {states.product.additionalInfo?.category || "-"}
+                </Text>
+                <Text className="text-lg flex-1">
+                  Descrição: {states.product.additionalInfo?.description || "-"}
+                </Text>
+              </>
+            )}
           </View>
         </View>
 
