@@ -7,7 +7,7 @@ import LogoMobile from "src/assets/svg/logoMobile.svg";
 import * as T from "./types";
 import { Button } from "src/components/Button";
 
-export const DashBoardHeader: React.FC<T.HeaderProps> = ({ name, type }) => {
+export const DashBoardHeader: React.FC<T.HeaderProps> = ({ name }) => {
   return (
     <View className="w-full h-40 bg-blue-100 flex flex-row items-center justify-center px-4">
       <View className="w-full flex flex-row items-center pt-8 justify-between">
