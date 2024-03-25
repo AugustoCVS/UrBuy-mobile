@@ -8,6 +8,8 @@ import { RegisterRequest } from "src/services/interfaces/auth";
 
 export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
   const toast = useToast();
+  const [securePassword, setSecurePassword] = useState(true);
+  const [secureConfirmPassword, setSecureConfirmPassword] = useState(true);
   const [loading, setLoading] = useState<boolean>(false);
 
   const showToast = ({title, error}: {title: string, error: boolean }): void => {
@@ -18,6 +20,14 @@ export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
       placement: "top",
     });
   };
+
+  const handleShowPassword = (): void => {
+    setSecurePassword(!securePassword);
+  };
+
+  const handleShowConfirmPassword = (): void => {
+    setSecureConfirmPassword(!secureConfirmPassword);
+  }
 
   const handleSignUp = async (FormData: RegisterRequest): Promise<void> => {
     setLoading(true);
@@ -40,10 +50,14 @@ export const useModalRegister = ({modalRef}: T.ModalRegisterProps) => {
   return {
     states: {
       loading,
+      securePassword,
+      secureConfirmPassword,
     },
     actions: {
       handleSignUp,
       handleCloseModal,
+      handleShowPassword,
+      handleShowConfirmPassword,
     },
   };
 };

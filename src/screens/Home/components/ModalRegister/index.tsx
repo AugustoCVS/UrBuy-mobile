@@ -1,5 +1,5 @@
 import React from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Entypo } from "@expo/vector-icons";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -43,20 +43,82 @@ export const ModalRegister: React.FC<T.ModalRegisterProps> = ({ modalRef }) => {
         style={{ maxHeight: 500 }}
         showsVerticalScrollIndicator={false}
       >
-        {U.formFields.map((item) => (
-          <Controller
-            key={item.name}
-            control={control}
-            name={item.name as keyof T.useRegisterProps}
-            render={({ field: { onChange } }) => (
-              <Input
-                placeholder={item.placeholder}
-                onChangeText={onChange}
-                errorMessage={errors[item.name]?.message}
-              />
-            )}
-          />
-        ))}
+        {U.formFields.map((item) => {
+          if (item.name === "password") {
+            return (
+              <View>
+                <Controller
+                  control={control}
+                  name={item.name}
+                  render={({ field: { onChange } }) => (
+                    <Input
+                      placeholder={item.placeholder}
+                      onChangeText={onChange}
+                      errorMessage={errors.password?.message}
+                      secureTextEntry={states.securePassword}
+                    />
+                  )}
+                />
+
+                <Pressable
+                  className="absolute right-4 top-3"
+                  onPress={actions.handleShowPassword}
+                >
+                  {states.securePassword ? (
+                    <Entypo name="eye-with-line" size={24} color="#B3B3B3" />
+                  ) : (
+                    <AntDesign name="eyeo" size={24} color="#B3B3B3" />
+                  )}
+                </Pressable>
+              </View>
+            );
+          }
+
+          if (item.name === "confirm_password") {
+            return (
+              <View>
+                <Controller
+                  control={control}
+                  name={item.name}
+                  render={({ field: { onChange } }) => (
+                    <Input
+                      placeholder={item.placeholder}
+                      onChangeText={onChange}
+                      errorMessage={errors.confirm_password?.message}
+                      secureTextEntry={states.secureConfirmPassword}
+                    />
+                  )}
+                />
+
+                <Pressable
+                  className="absolute right-4 top-3"
+                  onPress={actions.handleShowConfirmPassword}
+                >
+                  {states.secureConfirmPassword ? (
+                    <Entypo name="eye-with-line" size={24} color="#B3B3B3" />
+                  ) : (
+                    <AntDesign name="eyeo" size={24} color="#B3B3B3" />
+                  )}
+                </Pressable>
+              </View>
+            );
+          }
+
+          return (
+            <Controller
+              key={item.name}
+              control={control}
+              name={item.name as keyof T.useRegisterProps}
+              render={({ field: { onChange } }) => (
+                <Input
+                  placeholder={item.placeholder}
+                  onChangeText={onChange}
+                  errorMessage={errors[item.name]?.message}
+                />
+              )}
+            />
+          );
+        })}
         <Text className="text-gray-600 text-xs px-4 mb-4 text-center">
           A senha deve conter letras maiúsculas e minúsculas, números e um
           caractere especial.
