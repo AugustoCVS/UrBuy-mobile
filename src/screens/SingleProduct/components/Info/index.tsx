@@ -19,7 +19,7 @@ export const Info: React.FC<InfoProps> = ({
 
   return (
     <View className="flex-row items-center px-4 mt-1">
-      <Text className="text-lg flex-1">{label}</Text>
+      <Text className="text-lg flex-1 font-bold">{label}</Text>
       <Text className="text-lg flex-1 text-right" numberOfLines={numberOfLines} onPress={handleNumberOfLines}>
         {value || "-"}
       </Text>
