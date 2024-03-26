@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
 });
 
 export const Dashboard: React.FC = () => {
-  const {actions} = useDashboard();
+  const { actions } = useDashboard();
 
   return (
     <>
-      <DashBoardHeader name="Augusto" type="Comprador" />
+      <DashBoardHeader name="Augusto" />
       <View style={styles.container}>
         <FlatList
           data={productList}
@@ -30,11 +30,11 @@ export const Dashboard: React.FC = () => {
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <Products
-              description={item.description}
+              productType={item.productType}
               name={item.name}
               price={item.price}
               quantity={item.quantity}
-              onPress={() => actions.handleNavigateToProduct({product: item})}
+              onPress={() => actions.handleNavigateToProduct({ product: item })}
             />
           )}
           contentContainerStyle={{ alignItems: "center" }}

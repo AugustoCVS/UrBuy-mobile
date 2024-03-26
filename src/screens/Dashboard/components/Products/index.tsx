@@ -7,7 +7,7 @@ import { Button } from "src/components/Button";
 import { useProducts } from "./hook";
 
 export const Products: React.FC<T.ProductsProps> = ({
-  description,
+  productType,
   name,
   price,
   quantity,
@@ -25,7 +25,7 @@ export const Products: React.FC<T.ProductsProps> = ({
             <Text className="text-2xl">{name}</Text>
           </View>
 
-          <Text className="text-1xl">{description}</Text>
+          <Text className="text-1xl">{productType}</Text>
 
           <View className="flex flex-col items-start">
             <Text className="text-1xl">Preço: R${price}</Text>
