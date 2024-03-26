@@ -6,7 +6,7 @@ export type ProductProps = {
   productType: string;
   price: number;
   quantity: number;
-  img: string;
+  img: string[];
   additionalInfo?: {
     brand?: string;
     category?: string;
@@ -17,9 +17,11 @@ export type ProductProps = {
 export type ProductProviderProps = {
   states: {
     product: ProductProps | undefined;
+    productType: string;
   };
   actions: {
     setProduct: React.Dispatch<React.SetStateAction<ProductProps | undefined>>;
+    setProductType: React.Dispatch<React.SetStateAction<string>>;
   }
 }
 
@@ -29,11 +31,12 @@ export const useProductContext = () => useContext(ProductContext);
 
 export const ProductProvider: FC<{children?: ReactNode}> = ({children}) => {
   const [product, setProduct] = useState<ProductProps | undefined>();
+  const [productType, setProductType] = useState<string>("");
 
   return (
     <ProductContext.Provider value={{
-      states: { product },
-      actions: { setProduct } 
+      states: { product, productType },
+      actions: { setProduct, setProductType } 
     }}>
       {children}
     </ProductContext.Provider>
