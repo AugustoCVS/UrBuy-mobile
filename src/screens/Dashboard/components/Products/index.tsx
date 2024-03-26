@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
 
 import * as T from "./types";
@@ -11,6 +11,7 @@ export const Products: React.FC<T.ProductsProps> = ({
   name,
   price,
   quantity,
+  img,
   onPress,
 }) => {
   const { actions } = useProducts();
@@ -18,7 +19,11 @@ export const Products: React.FC<T.ProductsProps> = ({
   return (
     <TouchableOpacity onPress={onPress}>
       <View className="w-[350px] border border-blue-100 rounded-xl flex flex-row items-center justify-center mt-4 p-4">
-        <View className="w-32 h-40 bg-gray-600 mr-4 rounded-md" />
+        <Image
+          source={{ uri: img }}
+          height={40}
+          className="w-32 h-40 mr-4"
+        />
 
         <View className="flex flex-col items-start gap-4">
           <View className=" border-b border-b-gray-300">
@@ -32,8 +37,9 @@ export const Products: React.FC<T.ProductsProps> = ({
             <Text className="text-1xl">Quantidade: {quantity}</Text>
           </View>
 
-          <Button className="h-8 w-40 flex flex-row items-center justify-center bg-green-100 rounded-md"
-          onPress={actions.featureInDevelopment}
+          <Button
+            className="h-8 w-40 flex flex-row items-center justify-center bg-green-100 rounded-md"
+            onPress={actions.featureInDevelopment}
           >
             <Feather
               name="shopping-bag"

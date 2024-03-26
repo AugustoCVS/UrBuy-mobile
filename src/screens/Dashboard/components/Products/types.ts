@@ -3,5 +3,6 @@ export type ProductsProps = {
     price: number;
     quantity: number;
     productType: string;
+    img: string;
     onPress?: () => void;
 }
