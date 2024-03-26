@@ -6,8 +6,18 @@ import { Dashboard } from "src/screens/Dashboard";
 import { HistoricScreen } from "src/screens/Historic";
 import { Menu } from "src/screens/Menu";
 import { ProductsAvailable } from "src/screens/Products";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
+
+export type TabNavigation = {
+  Dashboard: undefined;
+  Products: undefined;
+  Historic: undefined;
+  Menu: undefined;
+};
+
+export type TabTypes = NativeStackNavigationProp<TabNavigation>;
 
 export default function TabRoutes() {
   return (
