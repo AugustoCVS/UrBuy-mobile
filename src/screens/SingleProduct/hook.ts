@@ -7,15 +7,14 @@ export const useProductCard = () => {
   const product = states.product;
 
   const productInfo = {
-    productType: product.productType,
+    category: product.category,
     price: product.price,
-    quantity: product.quantity,
+    amount: product.amount,
   }
 
   const productAdditionalInfo = {
-    brand: product.additionalInfo?.brand,
-    category: product.additionalInfo?.category,
-    description: product.additionalInfo?.description,
+    brand: product.brand,
+    description: product.description,
   }
 
   return {
