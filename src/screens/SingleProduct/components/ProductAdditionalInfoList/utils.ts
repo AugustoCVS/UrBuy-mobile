@@ -5,18 +5,16 @@ export const ProductAdditionalInfoList = ({
 }: {
   productAdditionalInfo: ProductAdditionalInfoProps;
 }) => {
-  const { brand, category, description } = productAdditionalInfo;
+  const { brand, description } = productAdditionalInfo;
 
   return [
     {
+      id: 0,
       label: "Marca",
       value: brand,
     },
     {
-      label: "Categoria",
-      value: category,
-    },
-    {
+      id: 1,
       label: "Descrição",
       value: description,
     },

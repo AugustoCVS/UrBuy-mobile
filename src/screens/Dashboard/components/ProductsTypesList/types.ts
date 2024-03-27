@@ -1,4 +1,4 @@
 export type ProductsTypesListProps = {
   onPress: () => void;
-  productType: string;
+  category: string;
 }

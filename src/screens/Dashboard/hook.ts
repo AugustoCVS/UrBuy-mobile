@@ -13,8 +13,8 @@ export const useDashboard = () => {
   const navigation = useNavigation<StackTypes>();
   const tabNavigation = useNavigation<TabTypes>()
 
-  const handleNavigateToProductList = (productType: string): void => {
-    actions.setProductType(productType);
+  const handleNavigateToProductList = (category: string): void => {
+    actions.setCategory(category);
     tabNavigation.navigate("Products")
   }
 

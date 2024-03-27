@@ -5,20 +5,23 @@ export const ProductInfoList = ({
 }: {
   productInfo: ProductInfoProps;
 }) => {
-  const { productType, price, quantity } = productInfo;
+  const { category, price, amount } = productInfo;
 
   return [
     {
+      id: 0,
       label: "Tipo:",
-      value: productType,
+      value: category,
     },
     {
+      id: 1,
       label: "Preço:",
       value: price,
     },
     {
+      id: 2,
       label: "Qtd. Disponível:",
-      value: quantity,
+      value: amount,
     },
   ];
 };

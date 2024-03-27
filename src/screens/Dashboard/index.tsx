@@ -26,9 +26,9 @@ export const Dashboard: React.FC = () => {
           renderItem={({ item, index }) => (
             <ProductsTypesList
               key={index}
-              productType={item.productType}
+              category={item.category}
               onPress={() =>
-                actions.handleNavigateToProductList(item.productType)
+                actions.handleNavigateToProductList(item.category)
               }
             />
           )}
@@ -42,10 +42,10 @@ export const Dashboard: React.FC = () => {
         {U.ProductList.map((product) => (
           <Products
             key={product.id}
-            productType={product.productType}
+            category={product.category}
             name={product.name}
             price={product.price}
-            quantity={product.quantity}
+            amount={product.amount}
             img={product.img[0]}
             onPress={() =>
               actions.handleNavigateToProduct({ product: product })
