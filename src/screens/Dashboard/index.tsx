@@ -5,7 +5,7 @@ import { DashBoardHeader } from "./components/Header";
 import { Products } from "./components/Products";
 
 import { useDashboard } from "./hook";
-import { ProductsTypesList } from "./components/ProductsTypesList";
+import { ProductsTypesList } from "src/components/ProductsTypesList";
 
 import * as U from "./utils";
 import { Banner } from "./components/Banner";
