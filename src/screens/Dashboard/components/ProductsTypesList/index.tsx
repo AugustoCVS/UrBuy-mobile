@@ -6,7 +6,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 
 export const ProductsTypesList: React.FC<ProductsTypesListProps> = ({
   onPress,
-  productType,
+  category,
 }) => {
   const renderIcons: Record<string | number | symbol, string | JSX.Element> = {
     computer: <MaterialIcons name="computer" size={60} color="#749E50" />,
@@ -17,23 +17,13 @@ export const ProductsTypesList: React.FC<ProductsTypesListProps> = ({
     smartphone: <MaterialIcons name="smartphone" size={60} color="#749E50" />,
   };
 
-  const renderNames: Record<string, string> = {
-    computer: "PCs",
-    keyboard: "Teclados",
-    mouse: "Mouses",
-    monitor: "Monitores",
-    headset: "Headsets",
-    smartphone: "Celulares",
-  };
-
   return (
     <TouchableOpacity
-      className="w-28 h-28 bg-blue-200 rounded-3xl justify-between items-center py-4 shadow-md shadow-gray-600"
+      className="w-24 h-24 bg-blue-200 rounded-full justify-center items-center shadow-md shadow-gray-600"
       onPress={onPress}
       delayLongPress={1}
     >
-      <Text> {renderIcons[productType]} </Text>
-      <Text className="text-blue-100 font-bold"> {renderNames[productType]} </Text>
+      <Text> {renderIcons[category]} </Text>
     </TouchableOpacity>
   );
 };
