@@ -1,7 +1,8 @@
 export type ProductsProps = {
     name: string;
     price: number;
-    quantity: number;
-    productType: string;
+    amount: number;
+    category: string;
+    img: string;
     onPress?: () => void;
 }

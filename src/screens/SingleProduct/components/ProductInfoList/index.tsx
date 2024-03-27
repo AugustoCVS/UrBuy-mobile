@@ -14,8 +14,8 @@ export const ProductInfoList: React.FC<ProductInfoListProps> = ({
       <Text className="text-3xl font-bold m-4 text-blue-100">{productName}</Text>
 
       {U.ProductInfoList({ productInfo: productInfo }).map(
-        ({ label, value }) => (
-          <Info key={value} label={label} value={value} />
+        ({ id, label, value }) => (
+          <Info key={id} label={label} value={value} />
         )
       )}
     </>
