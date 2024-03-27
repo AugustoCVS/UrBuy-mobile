@@ -1,9 +1,7 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Image } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { View, TouchableOpacity } from "react-native";
 
 import * as T from "./types";
-import { Button } from "src/components/Button";
 import { useProducts } from "./hook";
 import { ProductName } from "./components/ProductName";
 import { ProductInfo } from "./components/ProductInfo";
