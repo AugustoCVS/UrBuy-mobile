@@ -13,7 +13,7 @@ function App(): JSX.Element {
       <AuthProvider>
         <ProductProvider>
           <NativeBaseProvider>
-            <StatusBar style="light" />
+            <StatusBar style="dark" />
             <StackComponent />
           </NativeBaseProvider>
         </ProductProvider>
