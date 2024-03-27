@@ -8,6 +8,7 @@ import { useDashboard } from "./hook";
 import { ProductsTypesList } from "./components/ProductsTypesList";
 
 import * as U from "./utils";
+import { Banner } from "./components/Banner";
 
 export const Dashboard: React.FC = () => {
   const { actions } = useDashboard();
@@ -18,6 +19,8 @@ export const Dashboard: React.FC = () => {
       contentContainerStyle={{ flexGrow: 1, backgroundColor: "white" }}
     >
       <DashBoardHeader name="Augusto" />
+
+      <Banner />
 
       <View className="justify-center items-center pt-4 px-4">
         <FlatList
@@ -34,7 +37,7 @@ export const Dashboard: React.FC = () => {
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 20, padding: 8 }}
+          contentContainerStyle={{ gap: 28, padding: 8 }}
         />
       </View>
 

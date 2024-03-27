@@ -1,0 +1,1 @@
+export const IMAGE_URL = "https://img.odcdn.com.br/wp-content/uploads/2023/06/od-ofertas-gpu.jpg";
