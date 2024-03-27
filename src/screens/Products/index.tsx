@@ -1,11 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
-import { AntDesign, EvilIcons } from "@expo/vector-icons";
+import { View } from "react-native";
 
-import { SearchBar } from "src/components/SearchBar";
 import { useProducts } from "./hook";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Header } from "./components/Header";
+import { FilterBar } from "./components/FilterBar";
 
 export const ProductsAvailable: React.FC = () => {
   const { states, actions } = useProducts();
@@ -13,6 +11,8 @@ export const ProductsAvailable: React.FC = () => {
   return (
     <View className={`flex mt-12 items-center h-full w-full`}>
       <Header onChangeText={actions.onChangeText} value={states.searchValue} />
+
+      <FilterBar />
     </View>
   );
 };
