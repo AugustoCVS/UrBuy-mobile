@@ -7,6 +7,7 @@ import { HistoricScreen } from "src/screens/Historic";
 import { Menu } from "src/screens/Menu";
 import { ProductsAvailable } from "src/screens/Products";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +21,8 @@ export type TabNavigation = {
 export type TabTypes = NativeStackNavigationProp<TabNavigation>;
 
 export default function TabRoutes() {
+  const { bottom } = useSafeAreaInsets();
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -30,9 +33,8 @@ export default function TabRoutes() {
           fontSize: 14,
         },
         tabBarStyle: {
-          height: 60,
           backgroundColor: "#F9F8F8",
-          paddingBottom: 8,
+          paddingBottom: bottom,
           paddingTop: 8,
         },
       }}
