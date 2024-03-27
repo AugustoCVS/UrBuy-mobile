@@ -8,10 +8,10 @@ export const ProductInfo: React.FC<{
 }> = ({ price, amount, category }) => {
   return (
     <>
-      <Text className="text-1xl font-bold">{category}</Text>
+      <Text className="text-1xl text-white font-bold">{category}</Text>
       <View className="flex flex-col items-start">
-        <Text className="text-1xl font-bold">Preço: R${price}</Text>
-        <Text className="text-1xl font-bold">Quantidade: {amount}</Text>
+        <Text className="text-1xl text-white font-bold">Preço: R${price}</Text>
+        <Text className="text-1xl text-white font-bold">Quantidade: {amount}</Text>
       </View>
     </>
   );

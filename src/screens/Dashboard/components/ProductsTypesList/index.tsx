@@ -19,7 +19,7 @@ export const ProductsTypesList: React.FC<ProductsTypesListProps> = ({
 
   return (
     <TouchableOpacity
-      className="w-24 h-24 bg-blue-200 rounded-full justify-center items-center shadow-md shadow-gray-600"
+      className="w-24 h-24 bg-blue-200 rounded-full justify-center items-center shadow-sm shadow-gray-700 bg-blue-100"
       onPress={onPress}
       delayLongPress={1}
     >
