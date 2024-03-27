@@ -3,25 +3,22 @@ import React, { FC, ReactNode, createContext, useContext, useState } from "react
 export type ProductProps = {
   id: string;
   name: string;
-  productType: string;
+  category: string;
   price: number;
-  quantity: number;
+  amount: number;
   img: string[];
-  additionalInfo?: {
-    brand?: string;
-    category?: string;
-    description?: string;
-  }
+  brand: string;
+  description: string;
 }
 
 export type ProductProviderProps = {
   states: {
     product: ProductProps | undefined;
-    productType: string;
+    category: string;
   };
   actions: {
     setProduct: React.Dispatch<React.SetStateAction<ProductProps | undefined>>;
-    setProductType: React.Dispatch<React.SetStateAction<string>>;
+    setCategory: React.Dispatch<React.SetStateAction<string>>;
   }
 }
 
@@ -31,12 +28,12 @@ export const useProductContext = () => useContext(ProductContext);
 
 export const ProductProvider: FC<{children?: ReactNode}> = ({children}) => {
   const [product, setProduct] = useState<ProductProps | undefined>();
-  const [productType, setProductType] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
 
   return (
     <ProductContext.Provider value={{
-      states: { product, productType },
-      actions: { setProduct, setProductType } 
+      states: { product, category },
+      actions: { setProduct, setCategory } 
     }}>
       {children}
     </ProductContext.Provider>
