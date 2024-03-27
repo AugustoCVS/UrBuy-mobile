@@ -10,7 +10,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   icon,
 }) => {
   return (
-    <View>
+    <View className="flex items-center justify-center mt-4">
       <Input
         placeholder={placeholder}
         value={value}
