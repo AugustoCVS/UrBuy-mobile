@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { Text, View } from "react-native";
 
 import { useProducts } from "./hook";
 import { Header } from "./components/Header";
@@ -9,7 +9,7 @@ export const ProductsAvailable: React.FC = () => {
   const { states, actions } = useProducts();
 
   return (
-    <View className={`flex mt-12 items-center h-full w-full`}>
+    <View className={`flex items-center h-full w-full`}>
       <Header onChangeText={actions.onChangeText} value={states.searchValue} />
 
       <FilterBar />
