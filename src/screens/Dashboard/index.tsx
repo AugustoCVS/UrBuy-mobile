@@ -45,6 +45,7 @@ export const Dashboard: React.FC = () => {
           {U.ProductList.map((product) => (
             <Products
               key={product.id}
+              id={product.id}
               category={product.category}
               name={product.name}
               price={product.price}
