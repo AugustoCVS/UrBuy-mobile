@@ -37,7 +37,7 @@ export const Dashboard: React.FC = () => {
             )}
             horizontal
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ gap: 28, padding: 8 }}
+            contentContainerStyle={{ gap: 50, padding: 8 }}
           />
         </View>
 
