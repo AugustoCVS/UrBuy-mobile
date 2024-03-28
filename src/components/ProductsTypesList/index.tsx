@@ -12,18 +12,18 @@ export const ProductsTypesList: React.FC<ProductsTypesListProps> = ({
   iconColor,
 }) => {
   const renderIcons: Record<string | number | symbol, string | JSX.Element> = {
-    computer: <MaterialIcons name="computer" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    keyboard: <MaterialIcons name="keyboard" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    mouse: <MaterialIcons name="mouse" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    monitor: <MaterialIcons name="monitor" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    headset: <MaterialIcons name="headset" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    smartphone: <MaterialIcons name="smartphone" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />,
-    all: <MaterialIcons name="clear" size={iconSize ? iconSize : 60} color={iconColor ? iconColor : "#749E50"} />
+    computer: <MaterialIcons name="computer" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    keyboard: <MaterialIcons name="keyboard" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    mouse: <MaterialIcons name="mouse" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    monitor: <MaterialIcons name="monitor" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    headset: <MaterialIcons name="headset" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    smartphone: <MaterialIcons name="smartphone" size={iconSize ? iconSize : 52} color={iconColor ? iconColor : "white"} />,
+    all: <Text className="text-white font-bold">Limpar</Text>
   };
 
   return (
     <TouchableOpacity
-      className={styling ? styling : "w-24 h-24 rounded-full justify-center items-center shadow-sm shadow-gray-700 bg-blue-100"}
+      className={styling ? styling : "w-20 h-20 rounded-full justify-center items-center shadow-sm shadow-gray-700 bg-blue-100"}
       onPress={onPress}
       delayLongPress={1}
     >
