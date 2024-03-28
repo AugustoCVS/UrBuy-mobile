@@ -23,4 +23,5 @@ export const TypesList = [
     id: 5,
     category: "smartphone",
   },
+  { id: 6, category: "all" },
 ];
