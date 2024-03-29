@@ -1,27 +1,33 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from "react";
+import { ScrollView } from "react-native";
+import { Header } from "./components/Header";
+import { useHistoric } from "./hook";
+import { Card } from "./components/Card";
+
+import * as U from "./utils";
 
 export const HistoricScreen: React.FC = () => {
+  const { states, actions } = useHistoric();
+
   return (
-    <View className="flex-1 justify-center items-center bg-gray-100">
-      <View className="bg-white p-8 rounded-lg shadow-md w-11/12">
-        <Text className="text-3xl font-bold mb-4">Histórico de Pedidos</Text>
-        
-        <View className="border-t border-gray-300 pt-4">
-          <Text className="text-lg mb-2">Pedido 1</Text>
-          <Text className="text-lg mb-2">Pedido 2</Text>
-          <Text className="text-lg mb-2">Pedido 3</Text>
-          <Text className="text-lg mb-2">Pedido 1</Text>
-          <Text className="text-lg mb-2">Pedido 2</Text>
-          <Text className="text-lg mb-2">Pedido 3</Text>
-          <Text className="text-lg mb-2">Pedido 1</Text>
-          <Text className="text-lg mb-2">Pedido 2</Text>
-          <Text className="text-lg mb-2">Pedido 3</Text>
-          <Text className="text-lg mb-2">Pedido 1</Text>
-          <Text className="text-lg mb-2">Pedido 2</Text>
-          <Text className="text-lg mb-2">Pedido 3</Text>
-        </View>
-      </View>
-    </View>
+    <>
+      <Header value={states.searchValue} onChangeText={actions.onChangeText} />
+
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ alignItems: "center", width: "100%" }}
+      >
+        {U.HistoricList.map((item) => (
+          <Card
+            key={item.id}
+            amount={item.amount}
+            category={item.category}
+            date={item.date}
+            name={item.name}
+            price={item.price}
+          />
+        ))}
+      </ScrollView>
+    </>
   );
 };
