@@ -5,7 +5,7 @@ import { IMAGE_URL } from "./constants";
 
 export const Banner: React.FC = () => {
   return (
-    <View className="px-8 pt-8">
+    <View className="px-8 pt-8 shadow-sm shadow-gray-700">
       <Image
         source={{ uri: IMAGE_URL }}
         height={200}

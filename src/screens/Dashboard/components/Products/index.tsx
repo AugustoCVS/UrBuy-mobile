@@ -9,6 +9,7 @@ import { ProductImage } from "./components/ProductImage";
 import { ProductButton } from "./components/ProductButton";
 
 export const Products: React.FC<T.ProductsProps> = ({
+  id,
   category,
   name,
   price,
@@ -19,8 +20,8 @@ export const Products: React.FC<T.ProductsProps> = ({
   const { actions } = useProducts();
 
   return (
-    <TouchableOpacity onPress={onPress}>
-      <View className="w-[350px] h-[200px] bg-blue-200 shadow-2xl rounded-xl flex flex-row items-center justify-center mt-4 p-4">
+    <TouchableOpacity onPress={onPress} key={id}>
+      <View className="w-[350px] h-[200px] bg-blue-100 shadow shadow-gray-700 rounded-xl flex flex-row items-center justify-center mt-4 p-4">
         <ProductImage uri={img} />
 
         <View className="flex-1 flex-col items-start justify-between h-full">

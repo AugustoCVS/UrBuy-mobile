@@ -4,12 +4,13 @@ import { FormControl, Input as NativeBaseInput } from 'native-base';
 import * as T from "./types";
 
 
-export const Input: React.FC<T.InputProps> = ({ placeholder, value, onChangeText, secureTextEntry, isInvalid, errorMessage }) => {
+export const Input: React.FC<T.InputProps> = ({ keyboardType, placeholder, value, onChangeText, secureTextEntry, isInvalid, errorMessage }) => {
     const invalid = !!errorMessage || isInvalid
 
     return (
         <FormControl mb={4} isInvalid={invalid}>
             <NativeBaseInput
+                keyboardType={keyboardType}
                 placeholder={placeholder}
                 value={value}
                 onChangeText={onChangeText}

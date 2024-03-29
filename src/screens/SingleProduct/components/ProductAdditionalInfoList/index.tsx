@@ -18,7 +18,7 @@ export const ProductAdditionalInfoList: React.FC<
       {U.ProductAdditionalInfoList({
         productAdditionalInfo: productAdditionalInfo,
       }).map(({ id, label, value }) => (
-        <Info key={id} label={label} value={value} />
+        <Info key={id} label={label} value={value} isAdditionalInfo />
       ))}
     </View>
   );
