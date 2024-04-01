@@ -1,5 +1,5 @@
 export type ProductsTypesListProps = {
-  onPress: () => void;
+  onPress?: () => void;
   category: string;
   styling?: string;
   iconSize?: number;
