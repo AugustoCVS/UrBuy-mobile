@@ -9,6 +9,7 @@ import { ProductScreen } from "src/screens/SingleProduct";
 import { User, onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 import TabRoutes from "./tab.routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,18 +22,21 @@ export type StackNavigation = {
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
 
 export default function StackComponent() {
-  const [user, setUser] = useState<User | null>(null);
+  const [token, setToken] = useState<string>("");
+
+  const handleGetUserTokenFromStorage = async () => {
+    const res = await AsyncStorage.getItem("@token");
+    setToken(res);
+  };
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      setUser(user);
-    });
+    handleGetUserTokenFromStorage();
   }, []);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {user ? (
+        {token ? (
           <>
             <Stack.Screen
               name="TabDashboard"
