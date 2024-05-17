@@ -14,7 +14,7 @@ export const useProducts = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [products, setProducts] = useState<IProduct[]>([])
+  const [products, setProducts] = useState<IProduct[]>([]);
 
   const onChangeText = (value: string) => {
     setSearchValue(value);
@@ -29,7 +29,7 @@ export const useProducts = () => {
     navigation.navigate("SingleProduct");
   };
 
-  const handleGetProduct = useCallback(async() => {
+  const handleGetProducts = useCallback(async () => {
     setLoading(true);
     await ProductService.getProducts({
       category: states.category,
@@ -37,21 +37,20 @@ export const useProducts = () => {
       page: 0,
       size: 20,
     })
-    .then((res) => {
-      setProducts(res.content)
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-    .finally(() => {
-      setLoading(false)
-    })
-  }, [searchValue, states.category])
-
+      .then((res) => {
+        setProducts(res.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [states.category, searchValue]);
 
   useEffect(() => {
-    handleGetProduct()
-  }, [])
+    handleGetProducts();
+  }, [states.category, searchValue]);
 
   return {
     states: {
