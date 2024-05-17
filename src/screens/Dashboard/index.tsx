@@ -13,8 +13,6 @@ import { Banner } from "./components/Banner";
 export const Dashboard: React.FC = () => {
   const { states, actions } = useDashboard();
 
-  console.log(states.products);
-
   return (
     <>
       <DashBoardHeader name="Augusto" />
