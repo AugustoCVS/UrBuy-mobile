@@ -37,8 +37,9 @@ export const FilterBar: React.FC = () => {
       contentContainerStyle={{
         gap: 28,
         padding: 8,
-        height: 90,
-        marginBottom: 42,
+        paddingVertical: 20,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     />
   );
