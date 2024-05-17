@@ -20,7 +20,7 @@ export const ProductsAvailable: React.FC = () => {
         <FilterBar />
 
         <View className="flex-1 justify-center items-center pb-4">
-          {U.ProductList.map((product) => (
+          {states.products.map((product) => (
             <Products
               key={product.id}
               id={product.id}
@@ -28,7 +28,7 @@ export const ProductsAvailable: React.FC = () => {
               name={product.name}
               price={product.price}
               amount={product.amount}
-              img={product.img[0]}
+              img={product.img}
               onPress={() =>
                 actions.handleNavigateToProduct({ product: product })
               }
