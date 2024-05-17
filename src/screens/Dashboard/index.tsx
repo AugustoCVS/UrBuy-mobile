@@ -11,7 +11,9 @@ import * as U from "./utils";
 import { Banner } from "./components/Banner";
 
 export const Dashboard: React.FC = () => {
-  const { actions } = useDashboard();
+  const { states, actions } = useDashboard();
+
+  console.log(states.products);
 
   return (
     <>
@@ -42,7 +44,7 @@ export const Dashboard: React.FC = () => {
         </View>
 
         <View className="flex-1 justify-center items-center pb-4">
-          {U.ProductList.map((product) => (
+          {states.products.map((product) => (
             <Products
               key={product.id}
               id={product.id}
@@ -50,7 +52,7 @@ export const Dashboard: React.FC = () => {
               name={product.name}
               price={product.price}
               amount={product.amount}
-              img={product.img[0]}
+              img={product.img}
               onPress={() =>
                 actions.handleNavigateToProduct({ product: product })
               }
