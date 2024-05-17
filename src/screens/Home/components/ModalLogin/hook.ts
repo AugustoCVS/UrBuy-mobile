@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { useToast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
-import { signInWithEmailAndPassword } from "firebase/auth";
 
-import * as T from "./types";
 import * as U from "./utils";
 import { StackTypes } from "src/routes/stack.routes";
 import { FIREBASE_AUTH } from "auth/FirebaseConfig";
+import { AuthServices } from "src/services/auth";
+import { LoginRequest } from "src/services/interfaces/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const useModalLogin = () => {
   const navigation = useNavigation<StackTypes>();
@@ -16,7 +17,13 @@ export const useModalLogin = () => {
 
   const toast = useToast();
 
-  const showToast = ({title, error}: {title: string, error: boolean }): void => {
+  const showToast = ({
+    title,
+    error,
+  }: {
+    title: string;
+    error: boolean;
+  }): void => {
     toast.show({
       title: title,
       duration: 3000,
@@ -26,7 +33,7 @@ export const useModalLogin = () => {
   };
 
   const navigateToDashboard = (): void => {
-    showToast({title: "Login efetuado com sucesso!", error: false});
+    showToast({ title: "Login efetuado com sucesso!", error: false });
     navigation.navigate("TabDashboard");
   };
 
@@ -35,20 +42,33 @@ export const useModalLogin = () => {
   };
 
   const forgetPassword = (): void => {
-    showToast({title: "Funcionalidade em desenvolvimento!", error: true})
-  }
+    showToast({ title: "Funcionalidade em desenvolvimento!", error: true });
+  };
 
-  const handleSignUp = async (FormData: T.useLoginProps): Promise<void> => {
-    try {
-      setLoading(true);
-      await U.signInSchema.validate(FormData, { abortEarly: false });
-      await signInWithEmailAndPassword(auth, FormData.email, FormData.password);
-      navigateToDashboard();
-    } catch (error) {
-     showToast({title: "E-mail ou senha inválidos", error: true});
-    } finally {
-      setLoading(false);
-    }
+  const handleSaveUserTokenOnStorage = async ({
+    token,
+  }: {
+    token: string;
+  }): Promise<void> => {
+    await AsyncStorage.setItem("@token", token);
+  };
+
+  const handleSignUp = async (FormData: LoginRequest): Promise<void> => {
+    setLoading(true);
+    await U.signInSchema.validate(FormData, { abortEarly: false });
+    AuthServices.login({
+      data: FormData,
+    })
+      .then(async (res) => {
+        await handleSaveUserTokenOnStorage(res);
+        navigateToDashboard();
+      })
+      .catch(() => {
+        showToast({ title: "Credências inválidas!", error: true });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return {
