@@ -21,6 +21,7 @@ export interface IProduct {
 
 export interface ProductRequest {
   category?: string;
+  name?: string;
   page?: number;
   size?: number;
 }
