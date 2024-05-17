@@ -10,7 +10,7 @@ export const ProductsAvailable: React.FC = () => {
   const { states, actions } = useProducts();
 
   return (
-    <>
+    <View className="w-full h-full">
       <Header onChangeText={actions.onChangeText} value={states.searchValue} />
       <FilterBar />
 
@@ -35,6 +35,6 @@ export const ProductsAvailable: React.FC = () => {
           />
         )}
       />
-    </>
+    </View>
   );
 };
