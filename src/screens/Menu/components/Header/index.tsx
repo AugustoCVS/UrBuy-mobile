@@ -9,7 +9,7 @@ export const Header: React.FC<HeaderProps> = ({ name }) => {
       <View className="w-28 h-28 rounded-full bg-gray-600 flex items-center justify-center mb-8">
         <FontAwesome name="camera" size={40} color="white" />
       </View>
-      <View className="ml-4">
+      <View>
         <Text className="text-xl font-bold">{name}</Text>
       </View>
     </View>
