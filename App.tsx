@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { NativeBaseProvider } from "native-base";
 import { AuthProvider } from "src/context/AuthContext/auth.context";
 import { ProductProvider } from "src/context/ProductContext/product.context";
+import { UserProvider } from "src/providers/user-provider";
 
 function App(): JSX.Element {
   return (
@@ -13,8 +14,10 @@ function App(): JSX.Element {
       <AuthProvider>
         <ProductProvider>
           <NativeBaseProvider>
-            <StatusBar style="dark" />
-            <StackComponent />
+            <UserProvider>
+              <StatusBar style="dark" />
+              <StackComponent />
+            </UserProvider>
           </NativeBaseProvider>
         </ProductProvider>
       </AuthProvider>
