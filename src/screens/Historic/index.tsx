@@ -15,16 +15,21 @@ export const HistoricScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ alignItems: "center", width: "100%" }}
       >
-        {states.purchases.map((item) => (
-          <Card
-            key={item.id}
-            amount={item.amount}
-            category={item.category}
-            date={item.date}
-            name={item.name}
-            price={item.price}
-          />
-        ))}
+        {states.purchases.map((item) => {
+          const total = item.price * item.amount;
+
+          return (
+            <Card
+              key={item.id}
+              amount={item.amount}
+              category={item.category}
+              date={item.date}
+              name={item.name}
+              price={item.price}
+              total={total}
+            />
+          );
+        })}
       </ScrollView>
     </>
   );

@@ -4,4 +4,5 @@ export type CardProps = {
   price: number;
   amount: number;
   category: string;
+  total: number;
 }

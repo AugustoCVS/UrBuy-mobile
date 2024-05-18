@@ -8,6 +8,7 @@ export const Info: React.FC<InfoProps> = ({
   category,
   name,
   price,
+  total,
 }) => {
   return (
     <View className="flex flex-col shadow-sm shadow-gray-600 w-full bg-gray-100 rounded-md p-4">
@@ -33,7 +34,7 @@ export const Info: React.FC<InfoProps> = ({
 
       <View className="flex flex-row justify-between">
         <Text className="text-base text-gray-600">Total</Text>
-        <Text className="text-base">R$ {price}</Text>
+        <Text className="text-base">R$ {total}</Text>
       </View>
     </View>
   );

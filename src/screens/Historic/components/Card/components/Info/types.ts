@@ -1,6 +1,7 @@
 export type InfoProps = {
   category: string;
-  price: string;
+  price: number;
   name: string;
-  amount: string;
+  amount: number;
+  total: number;
 };
