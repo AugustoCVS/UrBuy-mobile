@@ -19,9 +19,9 @@ export const ProductsAvailable: React.FC = () => {
         keyExtractor={(product) => product.id.toString()}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{
-          justifyContent: "center",
           alignItems: "center",
           paddingBottom: 16,
+          height: "100%",
         }}
         renderItem={({ item }) => (
           <Products
