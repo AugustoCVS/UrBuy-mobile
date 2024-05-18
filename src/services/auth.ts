@@ -1,6 +1,6 @@
 import {api} from './api';
 
-import { RegisterRequest, RegisterResponse, LoginRequest, LoginResponse } from './interfaces/auth';
+import { RegisterRequest, RegisterResponse, LoginRequest, LoginResponse, IUser } from './interfaces/auth';
 
 export const AuthServices = {
   register: async ({data}: {data: RegisterRequest}) => {
@@ -17,5 +17,11 @@ export const AuthServices = {
     })
 
     return res.data
+  },
+
+  getUserInfo: async ({userId}: {userId: number}) => {
+    const res = await api.get<IUser>(`/user/${userId}`);
+
+    return res.data;
   }
 }
