@@ -36,7 +36,7 @@ export const useHistoric = () => {
 
   useEffect(() => {
     handleGetAllPurchases();
-  }, [searchValue]);
+  }, [handleGetAllPurchases]);
 
   return {
     states: {

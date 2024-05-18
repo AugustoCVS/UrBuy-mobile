@@ -11,7 +11,7 @@ export const Header: React.FC<HeaderProps> = ({ onChangeText, value }) => {
     <View className="w-full h-40 bg-blue-100 flex flex-row items-center justify-center px-4 shadow-sm shadow-gray-600">
       <View className="mt-12 flex flex-row items-center">
         <SearchBar
-          placeholder="Nome, Preço ou Categoria"
+          placeholder="Nome"
           onChangeValue={onChangeText}
           value={value}
           icon={ICON}
