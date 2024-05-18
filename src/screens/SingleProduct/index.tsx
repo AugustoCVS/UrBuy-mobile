@@ -14,7 +14,11 @@ export const ProductScreen: React.FC = () => {
   return (
     <View className="flex-1 items-center bg-white p-4 justify-between">
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image source={{ uri: states.product.img[1] }} height={180} className="w-full" />
+        <Image
+          source={{ uri: states.product.img }}
+          height={180}
+          className="w-full"
+        />
 
         <View className=" py-8 rounded-lg shadow-md w-full mt-8 border border-gray-400">
           <ProductInfoList
