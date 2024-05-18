@@ -4,8 +4,6 @@ import { Header } from "./components/Header";
 import { useHistoric } from "./hook";
 import { Card } from "./components/Card";
 
-import * as U from "./utils";
-
 export const HistoricScreen: React.FC = () => {
   const { states, actions } = useHistoric();
 
@@ -17,7 +15,7 @@ export const HistoricScreen: React.FC = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ alignItems: "center", width: "100%" }}
       >
-        {U.HistoricList.map((item) => (
+        {states.purchases.map((item) => (
           <Card
             key={item.id}
             amount={item.amount}
