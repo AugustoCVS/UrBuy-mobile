@@ -21,3 +21,10 @@ export interface LoginRequest {
 export interface LoginResponse {
   token: string;
 }
+
+export interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  cnpj: string;
+}
