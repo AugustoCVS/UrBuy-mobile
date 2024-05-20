@@ -65,6 +65,10 @@ export const useDashboard = () => {
     buyModalRef.current?.open();
   };
 
+  const handleRefresh = (): void => {
+    handleGetProducts();
+  }
+
   return {
     refs: {
       buyModalRef,
@@ -78,6 +82,7 @@ export const useDashboard = () => {
       handleNavigateToProduct,
       handleNavigateToProductList,
       handleOpenBuyModal,
+      handleRefresh,
     },
   };
 };

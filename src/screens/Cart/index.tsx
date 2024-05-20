@@ -1,13 +1,21 @@
 import { FlatList } from "native-base";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { useCart } from "./hook";
 import { Card } from "./components/Card";
+import { Header } from "./components/Header";
 
 export const Cart: React.FC = () => {
   const { states, actions } = useCart();
 
   return (
     <View className="w-full h-full">
+      <Header
+        total={states.totalCart}
+        onPress={actions.handleBuyAllTheProducts}
+        loading={states.loading}
+        isEmpty={states.isEmpty}
+      />
+
       <FlatList
         data={states.products}
         keyExtractor={(product) => product.id.toString()}

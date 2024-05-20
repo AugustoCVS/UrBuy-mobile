@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, ScrollView } from "react-native";
+import { View, FlatList, ScrollView, RefreshControl } from "react-native";
 
 import { DashBoardHeader } from "./components/Header";
 import { Products } from "./components/Products";
@@ -20,6 +20,12 @@ export const Dashboard: React.FC = () => {
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={states.loading}
+            onRefresh={actions.handleRefresh}
+          />
+        }
       >
         <Banner />
 
