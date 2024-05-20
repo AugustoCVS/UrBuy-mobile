@@ -14,7 +14,7 @@ export const Menu: React.FC = () => {
       <View className="flex-1 h-full justify-between pt-24 items-center bg-gray-100">
         <View className="bg-white p-8 rounded-lg shadow-md w-11/12">
           <Header
-            name={states.userName}
+            name={states.user.name}
             handleChangePhoto={actions.handleChangePhoto}
           />
 
@@ -31,7 +31,7 @@ export const Menu: React.FC = () => {
         <ButtonSection onPress={actions.handleOpenUpdateModal} />
       </View>
 
-      <ModalUpdateInfo modalRef={refs.modalUpdateRef} />
+      <ModalUpdateInfo modalRef={refs.modalUpdateRef} userInfo={states.user} />
     </>
   );
 };

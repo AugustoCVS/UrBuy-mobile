@@ -9,7 +9,7 @@ export const useMenu = () => {
   
   const modalUpdateRef = useRef<Modalize>(null);
 
-  const userName = states.user.name;
+  const user = states.user;
   const userInfo = [
     { label: "CNPJ", value: states.user.cnpj },
     { label: "Email", value: states.user.email },
@@ -31,7 +31,7 @@ export const useMenu = () => {
       modalUpdateRef,
     },
     states: {
-      userName,
+      user,
       userInfo,
     },
     actions: {
