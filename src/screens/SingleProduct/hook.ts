@@ -1,11 +1,12 @@
-import { useContext } from "react";
-import { CartContext } from "src/context/CartContext/cart.context";
+import { useContext, useRef } from "react";
+import { Modalize } from "react-native-modalize";
 import { ProductContext } from "src/context/ProductContext/product.context";
 import { priceFormatter } from "src/utils/formaters";
 
 export const useProductCard = () => {
   const { states } = useContext(ProductContext);
-  const { actions } = useContext(CartContext);
+
+  const buyModalRef = useRef<Modalize>(null);
 
   const product = states.product;
 
@@ -20,18 +21,21 @@ export const useProductCard = () => {
     description: product.description,
   };
 
-  const handleAddProductOnCart = () => {
-    actions.addProductOnCart(product);
-  };
+  const handleOpenBuyModal = () => {
+    buyModalRef.current?.open();
+  }
 
   return {
+    refs: {
+      buyModalRef,
+    },
     states: {
       product,
       productInfo,
       productAdditionalInfo,
     },
     actions: {
-      handleAddProductOnCart,
+      handleOpenBuyModal,
     },
   };
 };
