@@ -21,7 +21,6 @@ export const ProductsAvailable: React.FC = () => {
         contentContainerStyle={{
           alignItems: "center",
           paddingBottom: 16,
-          height: "100%",
         }}
         renderItem={({ item }) => (
           <Products
