@@ -7,6 +7,8 @@ export type ProductInfoProps = {
 export type ProductInfoListProps = {
   productName: string;
   productInfo: ProductInfoProps;
+  increaseAmount: () => void;
+  decreaseAmount: () => void;
 }
 
 

@@ -10,18 +10,19 @@ export const ProductInfoList = ({
   return [
     {
       id: 0,
-      label: "Tipo:",
+      label: "Categoria:",
       value: category,
     },
     {
       id: 1,
-      label: "Preço:",
+      label: "Total:",
       value: price,
     },
     {
       id: 2,
-      label: "Qtd. Disponível:",
+      label: "Qtd:",
       value: amount,
+      isAmount: true,
     },
   ];
 };

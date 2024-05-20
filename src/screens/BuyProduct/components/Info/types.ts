@@ -1,5 +1,7 @@
 export type InfoProps = {
   label: string,
   value: string | number,
-  isAdditionalInfo?: boolean,
+  isAmount?: boolean,
+  increaseAmount: () => void,
+  decreaseAmount: () => void,
 };

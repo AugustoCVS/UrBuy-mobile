@@ -19,6 +19,8 @@ export const BuyProduct: React.FC = () => {
           <ProductInfoList
             productName={states.product.name}
             productInfo={states.productInfo}
+            decreaseAmount={actions.decreaseAmount}
+            increaseAmount={actions.increaseAmount}
           />
         </View>
       </ScrollView>

@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { Text, View } from "react-native";
 import { InfoProps } from "./types";
 
-export const Info: React.FC<InfoProps> = ({ label, value, isAdditionalInfo }) => {
+import { AntDesign } from "@expo/vector-icons";
+
+export const Info: React.FC<InfoProps> = ({
+  label,
+  value,
+  isAmount,
+  decreaseAmount,
+  increaseAmount,
+}) => {
   const [numberOfLines, setNumberOfLines] = useState<number>(1);
 
   const minNumberOfLines = 1;
@@ -14,17 +22,27 @@ export const Info: React.FC<InfoProps> = ({ label, value, isAdditionalInfo }) =>
     setNumberOfLines(minNumberOfLines);
   };
 
-  if (isAdditionalInfo) {
+  if (isAmount) {
     return (
-      <View className="flex-column  px-4 mt-1">
+      <View className="w-full flex-row items-center justify-between px-4 mt-1">
         <Text className="text-lg flex-1 font-bold">{label}</Text>
-        <Text
-          className="text-lg flex-1"
-          numberOfLines={numberOfLines}
-          onPress={handleNumberOfLines}
-        >
-          {value || "-"}
-        </Text>
+        <View className="flex-row gap-2 items-center">
+          <AntDesign
+            name="minuscircleo"
+            size={16}
+            color="black"
+            onPress={decreaseAmount}
+          />
+
+          <Text className="text-base">{value}</Text>
+
+          <AntDesign
+            name="pluscircleo"
+            size={16}
+            color="black"
+            onPress={increaseAmount}
+          />
+        </View>
       </View>
     );
   }

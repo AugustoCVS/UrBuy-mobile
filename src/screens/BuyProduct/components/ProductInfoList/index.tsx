@@ -8,6 +8,8 @@ import * as U from "./utils";
 export const ProductInfoList: React.FC<ProductInfoListProps> = ({
   productName,
   productInfo,
+  decreaseAmount,
+  increaseAmount,
 }) => {
   return (
     <>
@@ -16,8 +18,15 @@ export const ProductInfoList: React.FC<ProductInfoListProps> = ({
       </Text>
 
       {U.ProductInfoList({ productInfo: productInfo }).map(
-        ({ id, label, value }) => (
-          <Info key={id} label={label} value={value} />
+        ({ id, label, value, isAmount }) => (
+          <Info
+            key={id}
+            label={label}
+            value={value}
+            isAmount={isAmount}
+            decreaseAmount={decreaseAmount}
+            increaseAmount={increaseAmount}
+          />
         )
       )}
     </>
