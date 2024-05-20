@@ -9,19 +9,22 @@ import { StackTypes } from "src/routes/stack.routes";
 import { TabTypes } from "src/routes/tab.routes";
 import { IProduct } from "src/services/interfaces/product";
 import { ProductService } from "src/services/product";
+import { AuthContext } from "src/context/AuthContext/auth.context";
 
 export const useDashboard = () => {
   const { actions } = useContext(ProductContext);
+  const { states } = useContext(AuthContext);
+
   const navigation = useNavigation<StackTypes>();
-  const tabNavigation = useNavigation<TabTypes>()
+  const tabNavigation = useNavigation<TabTypes>();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
 
   const handleNavigateToProductList = (category: string): void => {
     actions.setCategory(category);
-    tabNavigation.navigate("Products")
-  }
+    tabNavigation.navigate("Products");
+  };
 
   const handleNavigateToProduct = ({
     product,
@@ -52,10 +55,13 @@ export const useDashboard = () => {
     handleGetProducts();
   }, []);
 
+  const user = states.user;
+
   return {
     states: {
       products,
       loading,
+      user,
     },
     actions: {
       handleNavigateToProduct,

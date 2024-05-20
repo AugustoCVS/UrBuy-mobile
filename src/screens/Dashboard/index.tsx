@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, FlatList, ScrollView } from "react-native";
 
 import { DashBoardHeader } from "./components/Header";
@@ -15,7 +15,7 @@ export const Dashboard: React.FC = () => {
 
   return (
     <>
-      <DashBoardHeader name="Augusto" />
+      <DashBoardHeader name={states.user.name} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
