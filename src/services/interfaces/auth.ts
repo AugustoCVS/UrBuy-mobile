@@ -28,3 +28,9 @@ export interface IUser {
   email: string;
   cnpj: string;
 }
+
+export interface UpdateUserInfoRequest {
+  name?: string;
+  email?: string;
+  cnpj?: string;
+}

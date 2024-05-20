@@ -1,6 +1,6 @@
 import {api} from './api';
 
-import { RegisterRequest, RegisterResponse, LoginRequest, LoginResponse, IUser } from './interfaces/auth';
+import { RegisterRequest, RegisterResponse, LoginRequest, LoginResponse, IUser, UpdateUserInfoRequest } from './interfaces/auth';
 
 export const AuthServices = {
   register: async ({data}: {data: RegisterRequest}) => {
@@ -22,6 +22,14 @@ export const AuthServices = {
   getUserInfo: async ({userId}: {userId: number}) => {
     const res = await api.get<IUser>(`/user/${userId}`);
 
+    return res.data;
+  },
+
+  updateUserInfo: async ({userId, data}: {userId: number, data: UpdateUserInfoRequest}) => {
+    const res = await api.put<IUser>(`/user/${userId}`, {
+      ...data
+    });
+    
     return res.data;
   }
 }
