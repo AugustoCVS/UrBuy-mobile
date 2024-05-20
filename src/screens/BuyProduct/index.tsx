@@ -25,7 +25,10 @@ export const BuyProduct: React.FC = () => {
         </View>
       </ScrollView>
 
-      <ButtonProduct onPress={() => {}} />
+      <ButtonProduct
+        onPress={actions.handleBuyProduct}
+        loading={states.loading}
+      />
     </View>
   );
 };

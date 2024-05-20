@@ -1,12 +1,15 @@
+import { useNavigation } from "@react-navigation/native";
 import { useCallback, useContext, useState } from "react";
 import { AuthContext } from "src/context/AuthContext/auth.context";
 import { ProductContext } from "src/context/ProductContext/product.context";
+import { StackTypes } from "src/routes/stack.routes";
 import { PurchaseService } from "src/services/purchase";
 import { dateFormatter, priceFormatter } from "src/utils/formaters";
 import { useMessage } from "src/utils/message";
 
 export const useBuyProduct = () => {
   const { showToast } = useMessage();
+  const navigation = useNavigation<StackTypes>();
 
   const { states } = useContext(ProductContext);
   const { states: userStates } = useContext(AuthContext);
@@ -41,8 +44,9 @@ export const useBuyProduct = () => {
     )
       .then(() => {
         showToast({ title: "Compra realizada com sucesso", error: false });
+        navigation.navigate("TabDashboard");
       })
-      .catch(() => {
+      .catch((err) => {
         showToast({ title: "Error ao realizar a compra", error: true });
       })
       .finally(() => {
@@ -51,17 +55,17 @@ export const useBuyProduct = () => {
   }, []);
 
   const increaseAmount = (): void => {
-    if(product.amount <= amount) {
+    if (product.amount <= amount) {
       showToast({ title: "Quantidade máxima alcançada", error: true });
       return;
     }
     return setAmount(amount + 1);
-  }
+  };
 
   const decreaseAmount = (): void => {
-    if(amount === 1) return;
+    if (amount === 1) return;
     return setAmount(amount - 1);
-  }
+  };
 
   return {
     states: {
