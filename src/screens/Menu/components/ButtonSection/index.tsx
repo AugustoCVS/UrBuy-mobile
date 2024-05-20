@@ -14,10 +14,7 @@ export const ButtonSection: React.FC<{ onPress: () => void }> = ({
         <Text className="text-white text-lg">Atualizar Informações</Text>
       </Button>
 
-      <Button
-        onPress={onPress}
-        className="bg-green-100 w-72 h-12 rounded-lg flex items-center justify-center text-center"
-      >
+      <Button className="bg-green-100 w-72 h-12 rounded-lg flex items-center justify-center text-center">
         <Text className="text-white text-lg">Cadastrar Endereço</Text>
       </Button>
     </View>
