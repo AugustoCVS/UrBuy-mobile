@@ -16,8 +16,8 @@ export const useMenu = () => {
 
   const user = states.user;
   const userInfo = [
-    { label: "CNPJ", value: states.user.cnpj },
-    { label: "Email", value: states.user.email },
+    { label: "CNPJ", value: states.user?.cnpj || '-' },
+    { label: "Email", value: states.user?.email || '-' },
   ];
 
   const handleOpenUpdateModal = (): void => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useToast } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
@@ -7,9 +7,12 @@ import { StackTypes } from "src/routes/stack.routes";
 import { AuthServices } from "src/services/auth";
 import { LoginRequest } from "src/services/interfaces/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "src/context/AuthContext/auth.context";
 
 export const useModalLogin = () => {
+  const { actions } = useContext(AuthContext);
   const navigation = useNavigation<StackTypes>();
+
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -53,6 +56,7 @@ export const useModalLogin = () => {
     token: string;
   }): Promise<void> => {
     await AsyncStorage.setItem("@token", token);
+    actions.setToken(token);
   };
 
   const handleSignUp = async (FormData: LoginRequest): Promise<void> => {
