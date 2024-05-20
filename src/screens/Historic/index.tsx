@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { FlatList, View } from "react-native";
 import { Header } from "./components/Header";
 import { useHistoric } from "./hook";
 import { Card } from "./components/Card";
@@ -8,14 +8,20 @@ export const HistoricScreen: React.FC = () => {
   const { states, actions } = useHistoric();
 
   return (
-    <>
+    <View className="w-full h-full">
       <Header value={states.searchValue} onChangeText={actions.onChangeText} />
 
-      <ScrollView
+      <FlatList
+        data={states.purchases}
+        keyExtractor={(product) => product.id.toString()}
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ alignItems: "center", width: "100%" }}
-      >
-        {states.purchases.map((item) => {
+        contentContainerStyle={{
+          alignItems: "center",
+          paddingBottom: 16,
+        }}
+        refreshing={states.loading}
+        onRefresh={actions.handleRefresh}
+        renderItem={({ item }) => {
           const total = item.price * item.amount;
 
           return (
@@ -29,8 +35,8 @@ export const HistoricScreen: React.FC = () => {
               total={total}
             />
           );
-        })}
-      </ScrollView>
-    </>
+        }}
+      />
+    </View>
   );
 };
