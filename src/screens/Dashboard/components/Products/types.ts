@@ -1,9 +1,10 @@
 export type ProductsProps = {
-    id: string,
+    id: number,
     name: string;
     price: number;
     amount: number;
     category: string;
     img: string;
     onPress?: () => void;
+    handleOpenModal: () => void;
 }

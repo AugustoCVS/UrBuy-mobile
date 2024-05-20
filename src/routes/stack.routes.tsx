@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
@@ -6,9 +6,11 @@ import {
 } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import { ProductScreen } from "src/screens/SingleProduct";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 import TabRoutes from "./tab.routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Cart } from "src/screens/Cart";
+import { BuyProduct } from "src/screens/BuyProduct";
+import { AuthContext } from "src/context/AuthContext/auth.context";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,23 +18,28 @@ export type StackNavigation = {
   Home: undefined;
   TabDashboard: undefined;
   SingleProduct: undefined;
+  Cart: undefined;
+  BuyProduct: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
 
 export default function StackComponent() {
-  const [user, setUser] = useState<User | null>(null);
+  const { states, actions } = useContext(AuthContext);
+
+  const handleGetUserTokenFromStorage = async () => {
+    const res = await AsyncStorage.getItem("@token");
+    actions.setToken(res);
+  };
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      setUser(user);
-    });
+    handleGetUserTokenFromStorage();
   }, []);
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {user ? (
+        {states.token ? (
           <>
             <Stack.Screen
               name="TabDashboard"
@@ -50,6 +57,22 @@ export default function StackComponent() {
                 title: "Produto",
               }}
               component={ProductScreen}
+            />
+
+            <Stack.Screen
+              name="Cart"
+              options={{
+                title: "Carrinho",
+              }}
+              component={Cart}
+            />
+
+            <Stack.Screen
+              name="BuyProduct"
+              options={{
+                title: "Compra do Produto",
+              }}
+              component={BuyProduct}
             />
           </>
         ) : (

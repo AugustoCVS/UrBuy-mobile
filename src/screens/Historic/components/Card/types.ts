@@ -1,7 +1,8 @@
 export type CardProps = {
   name: string;
   date: string;
-  price: string;
-  amount: string;
+  price: number;
+  amount: number;
   category: string;
+  total: number;
 }

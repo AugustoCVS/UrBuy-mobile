@@ -34,7 +34,13 @@ export const FilterBar: React.FC = () => {
       )}
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ gap: 28, padding: 8, height: 90}}
+      contentContainerStyle={{
+        gap: 28,
+        padding: 8,
+        paddingVertical: 20,
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     />
   );
 };

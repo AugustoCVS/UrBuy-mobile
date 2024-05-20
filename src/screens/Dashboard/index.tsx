@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList, ScrollView } from "react-native";
+import { View, FlatList, ScrollView, RefreshControl } from "react-native";
 
 import { DashBoardHeader } from "./components/Header";
 import { Products } from "./components/Products";
@@ -9,16 +9,24 @@ import { ProductsTypesList } from "src/components/ProductsTypesList";
 
 import * as U from "./utils";
 import { Banner } from "./components/Banner";
+import { BuyModal } from "src/components/Modais/BuyModal";
+import { ListEmpty } from "src/components/ListEmtpy";
 
 export const Dashboard: React.FC = () => {
-  const { actions } = useDashboard();
+  const { refs, states, actions } = useDashboard();
 
   return (
     <>
-      <DashBoardHeader name="Augusto" />
+      <DashBoardHeader name={states.user?.name} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ flexGrow: 1 }}
+        refreshControl={
+          <RefreshControl
+            refreshing={states.loading}
+            onRefresh={actions.handleRefresh}
+          />
+        }
       >
         <Banner />
 
@@ -41,8 +49,14 @@ export const Dashboard: React.FC = () => {
           />
         </View>
 
+        {states.loading && (
+          <View className="flex items-center text-center">
+            <ListEmpty loading={states.loading} isProduct={!states.products} />
+          </View>
+        )}
+
         <View className="flex-1 justify-center items-center pb-4">
-          {U.ProductList.map((product) => (
+          {states.products.map((product) => (
             <Products
               key={product.id}
               id={product.id}
@@ -50,14 +64,17 @@ export const Dashboard: React.FC = () => {
               name={product.name}
               price={product.price}
               amount={product.amount}
-              img={product.img[0]}
+              img={product.img}
               onPress={() =>
                 actions.handleNavigateToProduct({ product: product })
               }
+              handleOpenModal={() => actions.handleOpenBuyModal({ product })}
             />
           ))}
         </View>
       </ScrollView>
+
+      <BuyModal modalRef={refs.buyModalRef} />
     </>
   );
 };

@@ -10,11 +10,18 @@ export const Card: React.FC<CardProps> = ({
   date,
   name,
   price,
+  total,
 }) => {
   return (
     <View className="flex flex-col gap-1 w-full p-6">
       <Date date={date} />
-      <Info amount={amount} category={category} name={name} price={price} />
+      <Info
+        amount={amount}
+        category={category}
+        name={name}
+        price={price}
+        total={total}
+      />
     </View>
   );
 };
