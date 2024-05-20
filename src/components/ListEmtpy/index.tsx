@@ -2,9 +2,9 @@ import { Skeleton } from "native-base";
 import { ListEmptyProps } from "./types";
 import { View, Text } from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { CartEmpty } from "./components/CartEmpty";
 import { ProductEmpty } from "./components/ProductEmpty";
+import { HistoricEmpty } from "./components/HistoricEmpty";
 
 export const ListEmpty: React.FC<ListEmptyProps> = ({
   loading,
@@ -30,11 +30,5 @@ export const ListEmpty: React.FC<ListEmptyProps> = ({
 
   if (isProduct) return <ProductEmpty />;
 
-  return (
-    <View className="w-full flex flex-col items-center justify-center">
-      <Text className="text-lg font-bold text-gray-500">
-        Nenhum produto encontrado
-      </Text>
-    </View>
-  );
+  if (isHistory) return <HistoricEmpty />;
 };

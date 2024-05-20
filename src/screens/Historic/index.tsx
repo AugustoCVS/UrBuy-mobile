@@ -3,6 +3,7 @@ import { FlatList, View } from "react-native";
 import { Header } from "./components/Header";
 import { useHistoric } from "./hook";
 import { Card } from "./components/Card";
+import { ListEmpty } from "src/components/ListEmtpy";
 
 export const HistoricScreen: React.FC = () => {
   const { states, actions } = useHistoric();
@@ -36,6 +37,7 @@ export const HistoricScreen: React.FC = () => {
             />
           );
         }}
+        ListEmptyComponent={<ListEmpty loading={states.loading} isHistory />}
       />
     </View>
   );
