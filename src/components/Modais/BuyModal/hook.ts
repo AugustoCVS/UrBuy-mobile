@@ -14,7 +14,7 @@ export const useBuyModal = ({ modalRef }: BuyModalProps) => {
   const { states } = useContext(ProductContext);
 
   const handleNavigateToBuyScreen = (): void => {
-    navigation.navigate("Buy");
+    navigation.navigate("BuyProduct");
   };
 
   const handleAddToCart = (): void => {
