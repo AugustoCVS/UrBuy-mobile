@@ -31,4 +31,6 @@ export const ListEmpty: React.FC<ListEmptyProps> = ({
   if (isProduct) return <ProductEmpty />;
 
   if (isHistory) return <HistoricEmpty />;
+
+  return null;
 };

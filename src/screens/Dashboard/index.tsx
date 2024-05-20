@@ -10,6 +10,7 @@ import { ProductsTypesList } from "src/components/ProductsTypesList";
 import * as U from "./utils";
 import { Banner } from "./components/Banner";
 import { BuyModal } from "src/components/Modais/BuyModal";
+import { ListEmpty } from "src/components/ListEmtpy";
 
 export const Dashboard: React.FC = () => {
   const { refs, states, actions } = useDashboard();
@@ -47,6 +48,12 @@ export const Dashboard: React.FC = () => {
             contentContainerStyle={{ gap: 50, padding: 8 }}
           />
         </View>
+
+        {states.loading && (
+          <View className="flex items-center text-center">
+            <ListEmpty loading={states.loading} isProduct={!states.products} />
+          </View>
+        )}
 
         <View className="flex-1 justify-center items-center pb-4">
           {states.products.map((product) => (
