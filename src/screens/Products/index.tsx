@@ -22,6 +22,8 @@ export const ProductsAvailable: React.FC = () => {
           alignItems: "center",
           paddingBottom: 16,
         }}
+        refreshing={states.loading}
+        onRefresh={actions.handleRefresh}
         renderItem={({ item }) => (
           <Products
             id={item.id}

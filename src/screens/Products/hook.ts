@@ -52,14 +52,20 @@ export const useProducts = () => {
     handleGetProducts();
   }, [states.category, searchValue]);
 
+  const handleRefresh = (): void => {
+    handleGetProducts();
+  }
+
   return {
     states: {
       searchValue,
       products,
+      loading,
     },
     actions: {
       onChangeText,
       handleNavigateToProduct,
+      handleRefresh,
     },
   };
 };
