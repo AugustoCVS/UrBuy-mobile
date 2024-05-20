@@ -9,9 +9,10 @@ import { ProductsTypesList } from "src/components/ProductsTypesList";
 
 import * as U from "./utils";
 import { Banner } from "./components/Banner";
+import { BuyModal } from "src/components/Modais/BuyModal";
 
 export const Dashboard: React.FC = () => {
-  const { states, actions } = useDashboard();
+  const { refs, states, actions } = useDashboard();
 
   return (
     <>
@@ -54,10 +55,13 @@ export const Dashboard: React.FC = () => {
               onPress={() =>
                 actions.handleNavigateToProduct({ product: product })
               }
+              handleOpenModal={() => actions.handleOpenBuyModal({ product })}
             />
           ))}
         </View>
       </ScrollView>
+
+      <BuyModal modalRef={refs.buyModalRef} />
     </>
   );
 };
