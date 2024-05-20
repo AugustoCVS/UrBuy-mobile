@@ -6,4 +6,5 @@ export type ProductsProps = {
     category: string;
     img: string;
     onPress?: () => void;
+    handleOpenModal: () => void;
 }

@@ -16,6 +16,7 @@ export const Products: React.FC<T.ProductsProps> = ({
   amount,
   img,
   onPress,
+  handleOpenModal,
 }) => {
   const { actions } = useProducts();
 
@@ -33,7 +34,7 @@ export const Products: React.FC<T.ProductsProps> = ({
             category={category}
           />
 
-          <ProductButton onPress={() => actions.featureInDevelopment()} />
+          <ProductButton onPress={handleOpenModal} />
         </View>
       </View>
     </TouchableOpacity>
