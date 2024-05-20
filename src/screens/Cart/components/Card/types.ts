@@ -5,5 +5,6 @@ export type CardProps = {
   amount: number;
   img: string;
   brand: string;
-  description: string;
+  handleIncreaseAmount: () => void;
+  handleDecreaseAmount: () => void;
 }

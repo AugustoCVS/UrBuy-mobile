@@ -24,7 +24,6 @@ export const Cart: React.FC = () => {
             name={item.name}
             price={item.price}
             brand={item.brand}
-            description={item.description}
             handleDecreaseAmount={() => actions.decreaseProductAmount(item)}
             handleIncreaseAmount={() => actions.increaseProductAmount(item)}
             img={item.img}

@@ -9,7 +9,8 @@ export const Card: React.FC<CardProps> = ({
   name,
   price,
   brand,
-  description,
+  handleIncreaseAmount,
+  handleDecreaseAmount,
 }) => {
   const total = price * amount;
 
@@ -22,7 +23,8 @@ export const Card: React.FC<CardProps> = ({
         price={price}
         total={total}
         brand={brand}
-        description={description}
+        handleIncreaseAmount={handleIncreaseAmount}
+        handleDecreaseAmount={handleDecreaseAmount}
       />
     </View>
   );
