@@ -44,6 +44,7 @@ export const ModalUpdateInfo: React.FC<ModalUpdateInfoProps> = ({
                   placeholder={field.placeholder}
                   onChangeText={onChange}
                   errorMessage={errors[field.name]?.message}
+                  value={control._formValues[field.name]}
                 />
               )}
             />
