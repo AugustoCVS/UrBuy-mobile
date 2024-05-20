@@ -33,7 +33,11 @@ export const useMenu = () => {
 
   const handleLogout = async (): Promise<void> => {
     await AsyncStorage.removeItem("@token");
-    navigation.navigate("Home");
+    const token = await AsyncStorage.getItem("@token");
+
+    if (!token) {
+      navigation.navigate("Home");
+    }
   };
 
   return {

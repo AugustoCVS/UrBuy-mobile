@@ -4,14 +4,12 @@ import { useNavigation } from "@react-navigation/native";
 
 import * as U from "./utils";
 import { StackTypes } from "src/routes/stack.routes";
-import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 import { AuthServices } from "src/services/auth";
 import { LoginRequest } from "src/services/interfaces/auth";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const useModalLogin = () => {
   const navigation = useNavigation<StackTypes>();
-  const auth = FIREBASE_AUTH;
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -32,9 +30,13 @@ export const useModalLogin = () => {
     });
   };
 
-  const navigateToDashboard = (): void => {
-    showToast({ title: "Login efetuado com sucesso!", error: false });
-    navigation.navigate("TabDashboard");
+  const navigateToDashboard = async (): Promise<void> => {
+    const token = await AsyncStorage.getItem("@token");
+
+    if (token) {
+      showToast({ title: "Login efetuado com sucesso!", error: false });
+      navigation.navigate("TabDashboard");
+    }
   };
 
   const showPassword = (): void => {
@@ -61,7 +63,7 @@ export const useModalLogin = () => {
     })
       .then(async (res) => {
         await handleSaveUserTokenOnStorage(res);
-        navigateToDashboard();
+        await navigateToDashboard();
       })
       .catch(() => {
         showToast({ title: "Credências inválidas!", error: true });
