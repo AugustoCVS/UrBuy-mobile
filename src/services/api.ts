@@ -1,8 +1,6 @@
-import axios, { AxiosRequestConfig } from "axios";
-import { Platform } from "react-native";
+import axios from "axios";
 import { responseInterceptor } from "./interceptors/ResponseInterceptor";
 import { errorInterceptor } from "./interceptors/ErrorInterceptor";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export const BASE_URL = "http://192.168.100.11:8080";
 
