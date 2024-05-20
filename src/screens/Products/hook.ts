@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { Modalize } from "react-native-modalize";
 import {
   ProductContext,
   ProductProps,
@@ -15,6 +16,8 @@ export const useProducts = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [products, setProducts] = useState<IProduct[]>([]);
+
+  const buyModalRef = useRef<Modalize>(null);
 
   const onChangeText = (value: string) => {
     setSearchValue(value);
@@ -56,7 +59,19 @@ export const useProducts = () => {
     handleGetProducts();
   }
 
+  const handleOpenBuyModal = ({
+    product,
+  }: {
+    product: ProductProps;
+  }): void => {
+    actions.setProduct(product);
+    buyModalRef.current?.open();
+  };
+
   return {
+    refs: {
+      buyModalRef,
+    },
     states: {
       searchValue,
       products,
@@ -66,6 +81,7 @@ export const useProducts = () => {
       onChangeText,
       handleNavigateToProduct,
       handleRefresh,
+      handleOpenBuyModal,
     },
   };
 };
