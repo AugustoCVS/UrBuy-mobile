@@ -9,7 +9,7 @@ import { ProductInfoList } from "./components/ProductInfoList";
 import { ProductAdditionalInfoList } from "./components/ProductAdditionalInfoList";
 
 export const ProductScreen: React.FC = () => {
-  const { states } = useProductCard();
+  const { states, actions } = useProductCard();
 
   return (
     <View className="flex-1 items-center bg-white p-4 justify-between">
@@ -31,7 +31,7 @@ export const ProductScreen: React.FC = () => {
           />
         </View>
 
-        <ButtonProduct onPress={() => {}} />
+        <ButtonProduct onPress={actions.handleAddProductOnCart} />
       </ScrollView>
     </View>
   );

@@ -1,6 +1,6 @@
 export type ProductInfoProps = {
   category: string;
-  price: number;
+  price: string;
   amount: number;
 }
 
