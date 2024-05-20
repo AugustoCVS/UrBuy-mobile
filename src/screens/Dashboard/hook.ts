@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import {
   ProductContext,
   ProductProps,
@@ -10,6 +10,7 @@ import { TabTypes } from "src/routes/tab.routes";
 import { IProduct } from "src/services/interfaces/product";
 import { ProductService } from "src/services/product";
 import { AuthContext } from "src/context/AuthContext/auth.context";
+import { Modalize } from "react-native-modalize";
 
 export const useDashboard = () => {
   const { actions } = useContext(ProductContext);
@@ -20,6 +21,8 @@ export const useDashboard = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
   const [products, setProducts] = useState<IProduct[]>([]);
+
+  const buyModalRef = useRef<Modalize>(null);
 
   const handleNavigateToProductList = (category: string): void => {
     actions.setCategory(category);
@@ -57,7 +60,15 @@ export const useDashboard = () => {
 
   const user = states.user;
 
+  const handleOpenBuyModal = ({ product }: { product: ProductProps }) => {
+    actions.setProduct(product);
+    buyModalRef.current?.open();
+  };
+
   return {
+    refs: {
+      buyModalRef,
+    },
     states: {
       products,
       loading,
@@ -66,6 +77,7 @@ export const useDashboard = () => {
     actions: {
       handleNavigateToProduct,
       handleNavigateToProductList,
+      handleOpenBuyModal,
     },
   };
 };
