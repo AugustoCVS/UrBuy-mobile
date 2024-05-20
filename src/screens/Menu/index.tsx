@@ -11,7 +11,7 @@ export const Menu: React.FC = () => {
 
   return (
     <>
-      <View className="flex-1 justify-center items-center bg-gray-100">
+      <View className="flex-1 h-full justify-between pt-24 items-center bg-gray-100">
         <View className="bg-white p-8 rounded-lg shadow-md w-11/12">
           <Header
             name={states.userName}
