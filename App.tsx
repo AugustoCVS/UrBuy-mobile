@@ -7,6 +7,7 @@ import { NativeBaseProvider } from "native-base";
 import { AuthProvider } from "src/context/AuthContext/auth.context";
 import { ProductProvider } from "src/context/ProductContext/product.context";
 import { UserProvider } from "src/providers/user-provider";
+import { Host } from "react-native-portalize";
 
 function App(): JSX.Element {
   return (
@@ -15,8 +16,10 @@ function App(): JSX.Element {
         <ProductProvider>
           <NativeBaseProvider>
             <UserProvider>
-              <StatusBar style="dark" />
-              <StackComponent />
+              <Host>
+                <StatusBar style="dark" />
+                <StackComponent />
+              </Host>
             </UserProvider>
           </NativeBaseProvider>
         </ProductProvider>
