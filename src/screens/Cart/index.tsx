@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import { useCart } from "./hook";
 import { Card } from "./components/Card";
 import { Header } from "./components/Header";
+import { ListEmpty } from "src/components/ListEmtpy";
 
 export const Cart: React.FC = () => {
   const { states, actions } = useCart();
@@ -37,6 +38,7 @@ export const Cart: React.FC = () => {
             img={item.img}
           />
         )}
+        ListEmptyComponent={<ListEmpty isCart />}
       />
     </View>
   );
