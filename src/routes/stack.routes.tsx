@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createNativeStackNavigator,
@@ -10,6 +10,7 @@ import TabRoutes from "./tab.routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Cart } from "src/screens/Cart";
 import { BuyProduct } from "src/screens/BuyProduct";
+import { AuthContext } from "src/context/AuthContext/auth.context";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,11 +25,11 @@ export type StackNavigation = {
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
 
 export default function StackComponent() {
-  const [token, setToken] = useState<string>("");
+  const { states, actions } = useContext(AuthContext);
 
   const handleGetUserTokenFromStorage = async () => {
     const res = await AsyncStorage.getItem("@token");
-    setToken(res);
+    actions.setToken(res);
   };
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function StackComponent() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {token ? (
+        {states.token ? (
           <>
             <Stack.Screen
               name="TabDashboard"

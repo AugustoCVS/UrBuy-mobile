@@ -7,7 +7,7 @@ import { StackTypes } from "src/routes/stack.routes";
 import { useMessage } from "src/utils/message";
 
 export const useMenu = () => {
-  const { states } = useContext(AuthContext);
+  const { states, actions } = useContext(AuthContext);
 
   const navigation = useNavigation<StackTypes>();
   const { showToast } = useMessage();
@@ -33,9 +33,8 @@ export const useMenu = () => {
 
   const handleLogout = async (): Promise<void> => {
     await AsyncStorage.removeItem("@token");
-    const token = await AsyncStorage.getItem("@token");
-
-    if (!token) {
+    actions.setToken("");
+    if (!states.token) {
       navigation.navigate("Home");
     }
   };
