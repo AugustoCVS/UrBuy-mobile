@@ -6,11 +6,10 @@ import {
 } from "@react-navigation/native-stack";
 import Home from "../screens/Home";
 import { ProductScreen } from "src/screens/SingleProduct";
-import { User, onAuthStateChanged } from "firebase/auth";
-import { FIREBASE_AUTH } from "auth/FirebaseConfig";
 import TabRoutes from "./tab.routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Cart } from "src/screens/Cart";
+import { BuyProduct } from "src/screens/BuyProduct";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +18,7 @@ export type StackNavigation = {
   TabDashboard: undefined;
   SingleProduct: undefined;
   Cart: undefined;
+  BuyProduct: undefined;
 };
 
 export type StackTypes = NativeStackNavigationProp<StackNavigation>;
@@ -64,6 +64,14 @@ export default function StackComponent() {
                 title: "Carrinho",
               }}
               component={Cart}
+            />
+
+            <Stack.Screen
+              name="BuyProduct"
+              options={{
+                title: "Compra do Produto",
+              }}
+              component={BuyProduct}
             />
           </>
         ) : (
