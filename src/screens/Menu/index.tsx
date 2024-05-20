@@ -28,7 +28,10 @@ export const Menu: React.FC = () => {
             ))}
           </View>
         </View>
-        <ButtonSection onPress={actions.handleOpenUpdateModal} />
+        <ButtonSection
+          handleUpdateInfo={actions.handleOpenUpdateModal}
+          handleLogout={actions.handleLogout}
+        />
       </View>
 
       <ModalUpdateInfo modalRef={refs.modalUpdateRef} userInfo={states.user} />
