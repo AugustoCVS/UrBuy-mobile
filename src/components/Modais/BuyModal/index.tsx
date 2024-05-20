@@ -1,3 +1,4 @@
+import { View } from "react-native";
 import { Modal } from "../Gerenic";
 import { ButtonSection } from "./components/ButtonSection";
 import { Header } from "./components/Header";
@@ -12,10 +13,12 @@ export const BuyModal: React.FC<BuyModalProps> = ({ modalRef }) => {
       modalizeRef={modalRef}
       HeaderComponent={<Header onClose={actions.handleCloseModal} />}
     >
-      <ButtonSection
-        addToCart={actions.handleAddToCart}
-        handleNavigateToBuyScreen={actions.handleNavigateToBuyScreen}
-      />
+      <View className="w-full flex items-center justify-center">
+        <ButtonSection
+          addToCart={actions.handleAddToCart}
+          handleNavigateToBuyScreen={actions.handleNavigateToBuyScreen}
+        />
+      </View>
     </Modal>
   );
 };
