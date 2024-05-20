@@ -38,6 +38,10 @@ export const useHistoric = () => {
     handleGetAllPurchases();
   }, [handleGetAllPurchases]);
 
+  const handleRefresh = (): void => {
+    handleGetAllPurchases();
+  };
+
   return {
     states: {
       searchValue,
@@ -46,6 +50,7 @@ export const useHistoric = () => {
     },
     actions: {
       onChangeText,
+      handleRefresh,
     },
   };
 };
