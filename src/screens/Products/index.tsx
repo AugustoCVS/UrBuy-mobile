@@ -6,6 +6,7 @@ import { Header } from "./components/Header";
 import { FilterBar } from "./components/FilterBar";
 import { Products } from "../Dashboard/components/Products";
 import { BuyModal } from "src/components/Modais/BuyModal";
+import { ListEmpty } from "src/components/ListEmtpy";
 
 export const ProductsAvailable: React.FC = () => {
   const { refs, states, actions } = useProducts();
@@ -26,6 +27,7 @@ export const ProductsAvailable: React.FC = () => {
           contentContainerStyle={{
             alignItems: "center",
             paddingBottom: 16,
+            minHeight: "100%",
           }}
           refreshing={states.loading}
           onRefresh={actions.handleRefresh}
@@ -43,6 +45,7 @@ export const ProductsAvailable: React.FC = () => {
               }
             />
           )}
+          ListEmptyComponent={<ListEmpty loading={states.loading} isProduct />}
         />
       </View>
 
