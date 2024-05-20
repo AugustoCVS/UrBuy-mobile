@@ -5,5 +5,6 @@ export type InfoProps = {
   amount: number;
   total: number;
   brand: string;
-  description: string;
+  handleIncreaseAmount: () => void;
+  handleDecreaseAmount: () => void;
 };
