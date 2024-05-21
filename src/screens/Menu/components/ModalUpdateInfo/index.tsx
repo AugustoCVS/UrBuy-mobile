@@ -22,9 +22,9 @@ export const ModalUpdateInfo: React.FC<ModalUpdateInfoProps> = ({
   } = useForm<formProps>({
     resolver: yupResolver(updateUserInfoSchema),
     values: {
-      name: userInfo.name,
-      email: userInfo.email,
-      cnpj: userInfo.cnpj,
+      name: userInfo?.name,
+      email: userInfo?.email,
+      cnpj: userInfo?.cnpj,
     },
   });
 

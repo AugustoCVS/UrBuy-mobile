@@ -14,7 +14,7 @@ export const Menu: React.FC = () => {
       <View className="flex-1 h-full justify-between pt-24 items-center bg-gray-100">
         <View className="bg-white p-8 rounded-lg shadow-md w-11/12">
           <Header
-            name={states.user.name}
+            name={states.user?.name || "-"}
             handleChangePhoto={actions.handleChangePhoto}
           />
 
